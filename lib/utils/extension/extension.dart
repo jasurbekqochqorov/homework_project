@@ -5,10 +5,10 @@ double width = 0.0;
 
 extension Size on int {
   double getH() {
-    return (this / 812) * height;
+    return (this / 800) * height;
   }
 
   double getW() {
-    return (this / 375) * width;
+    return (this / 360) * width;
   }
 }
