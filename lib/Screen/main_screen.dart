@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:homework12/Screen/widget/method.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
