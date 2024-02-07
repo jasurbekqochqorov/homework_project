@@ -20,6 +20,9 @@ class _FromToState extends State<FromTo> {
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      style: AppTextStyle.interRegular.copyWith(
+        color: AppColors.black,fontSize:14.sp
+      ),
       decoration: InputDecoration(
         focusedBorder: OutlineInputBorder(
             borderRadius:BorderRadius.circular(8.r),

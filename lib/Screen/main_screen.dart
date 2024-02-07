@@ -223,33 +223,33 @@ class _MainScreenState extends State<MainScreen> {
                           ],
                         ),),
                       SizedBox(height: 40.getH(),),
+                      Container(
+                        padding: EdgeInsets.only(left: 16.getW(),top:8.getH(),right: 16.getW(),bottom: 8.getH()),
+                        decoration: const BoxDecoration(
+                            color: AppColors.c_0085FF
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            ...List.generate(icons.length, (index) =>Column(children: [
+                              IconButton(onPressed:(){
+                                activeIndex1=index;
+                                setState(() {});
+                              }, icon:SvgPicture.asset(icons[index].icon,
+                                colorFilter: ColorFilter.mode((activeIndex1==index)?AppColors.white:AppColors.white.withOpacity(0.65),BlendMode.srcIn),
+                                width:24.getW(),height: 24.getH()
+                                ,),),
+                              Text(icons[index].title,style: AppTextStyle.interRegular.copyWith(
+                                  color: (activeIndex1==index)?AppColors.white:AppColors.white.withOpacity(0.65),fontSize: 12.sp
+                              ),)
+                            ],))
+                          ],),
+                      )
                     ],
                   ),
                 ),
               ),
             ),
-            Container(
-              padding: EdgeInsets.only(left: 16.getW(),top:8.getH(),right: 16.getW()),
-              decoration: const BoxDecoration(
-                  color: AppColors.c_0085FF
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                ...List.generate(icons.length, (index) =>Column(children: [
-                  IconButton(onPressed:(){
-                    activeIndex1=index;
-                    setState(() {});
-                  }, icon:SvgPicture.asset(icons[index].icon,
-                    colorFilter: ColorFilter.mode((activeIndex1==index)?AppColors.white:AppColors.white.withOpacity(0.65),BlendMode.srcIn),
-                    width:24.getW(),height: 24.getH()
-                    ,),),
-                  Text(icons[index].title,style: AppTextStyle.interRegular.copyWith(
-                    color: (activeIndex1==index)?AppColors.white:AppColors.white.withOpacity(0.65),fontSize: 12.sp
-                  ),)
-                ],))
-                ],),
-            )
           ],
         ),
       ),

@@ -17,6 +17,9 @@ class FlightPlane extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: TextFormField(
+        style: AppTextStyle.interRegular.copyWith(
+          color: AppColors.black,fontSize: 12.sp
+        ),
         decoration: InputDecoration(
           contentPadding:EdgeInsets.symmetric(vertical:9.getH(),horizontal:12.getW()),
             focusedBorder: OutlineInputBorder(
