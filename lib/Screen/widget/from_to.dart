@@ -8,8 +8,10 @@ import '../../utils/fonts/fonts.dart';
 import '../../utils/icons/icon.dart';
 
 class FromTo extends StatefulWidget {
-  const FromTo({super.key});
-
+  const FromTo({super.key, required this.labelText, required this.icon, required this.hintText});
+  final String labelText;
+  final String icon;
+  final String hintText;
   @override
   State<FromTo> createState() => _FromToState();
 }
@@ -27,12 +29,17 @@ class _FromToState extends State<FromTo> {
             borderRadius:BorderRadius.circular(8.r),
             borderSide: BorderSide(width: 1.getW(),color:AppColors.c_E6E8E7)
         ),
-        labelText:'From',
+        floatingLabelBehavior:FloatingLabelBehavior.always,
+        labelText:widget.labelText,
+        labelStyle: AppTextStyle.interRegular.copyWith(
+          color: AppColors.c_555555,fontSize: 12.sp
+        ),
         prefixIcon:IconButton(
             onPressed: (){},
-            icon: SvgPicture.asset(AllIcon.airPlane,width: 20.getW(),height: 20.getH(),)),
+            icon: SvgPicture.asset(widget.icon,width: 24.getW(),height: 24.getH(),)),
+        hintText:widget.hintText,
         hintStyle: AppTextStyle.interSemiBold.copyWith(
-          fontSize: 16,
+          fontSize: 16.sp,
         ),
         // contentPadding:EdgeInsets.symmetric(vertical:20),
       ),

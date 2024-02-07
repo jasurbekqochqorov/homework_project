@@ -31,6 +31,7 @@ class FlightPlane extends StatelessWidget {
             labelStyle: AppTextStyle.interLight.copyWith(
               color: AppColors.c_555555,fontSize: 12.sp
             ),
+            floatingLabelBehavior: FloatingLabelBehavior.always,
             prefixIcon:(isIcon!)?IconButton(onPressed: (){},
               icon: SvgPicture.asset(AllIcon.list),):null,
             hintText:hinText,
