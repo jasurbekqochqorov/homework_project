@@ -31,6 +31,24 @@ class _GridViewExtentState extends State<GridViewExtent> {
             padding: EdgeInsets.only(left: 12.getW()),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(6.r),
+              boxShadow: [
+
+                BoxShadow(
+                  color: Colors.grey.shade200,
+                  offset: const Offset(
+                    1.0,
+                    1.0,
+                  ),
+                  blurRadius: 10.0,
+                  spreadRadius: 2.0,
+                ), //BoxShadow
+                const BoxShadow(
+                  color: Colors.white,
+                  offset: Offset(0.0, 0.0),
+                  blurRadius: 0.0,
+                  spreadRadius: 0.0,
+                ),
+              ],
               color: AppColors.white,
             ),
             height:196.getH(),
