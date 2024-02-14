@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:homework12/third.dart';
+import 'package:homework12/utils/color/color.dart';
+import 'package:homework12/utils/fonts/fonts.dart';
+
+import 'Models/list.dart';
 
 
 
 class Second extends StatefulWidget {
-  const Second({super.key});
+  const Second({super.key, required this.image, required this.name, required this.price});
+  final String image;
+  final String name;
+  final String price;
 
   @override
   State<Second> createState() => _SecondState();
@@ -20,44 +26,17 @@ class _SecondState extends State<Second> {
         body: Padding(
           padding: const EdgeInsets.all(20),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(
-                  hintText: 'Name',
-                  focusedBorder: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10),
-                    borderSide: BorderSide(width: 1,color:Colors.black.withOpacity(0.2))
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(width: 1,color:Colors.black.withOpacity(0.2))
-                  )
-                ),
-              ),
-              SizedBox(height: 20,),
-              TextField(
-                controller: passwordController,
-                decoration: InputDecoration(
-                    hintText: 'Password',
-                    focusedBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(width: 1,color:Colors.black.withOpacity(0.2))
-                    ),
-                    enabledBorder: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                        borderSide: BorderSide(width: 1,color:Colors.black.withOpacity(0.2))
-                    )
-                ),
-              ),
-              const SizedBox(height: 20,),
-              TextButton(onPressed:(){
-                if(nameController.text.isNotEmpty && passwordController.text.isNotEmpty){
-                  Navigator.push(context,MaterialPageRoute(builder: (context){
-                    return Third();
-                  }));
-                }
-              }, child:const Text('Log in'))
+              Center(child: Image.asset(widget.image)),
+              SizedBox(height: 10,),
+              Text('Nomi:'+widget.name,style: AppTextStyle.interMedium.copyWith(
+                color: AppColors.blue,fontSize: 18
+              ),),
+              SizedBox(height: 10,),
+              Text('Narxi: '+widget.price, style:AppTextStyle.interMedium.copyWith(
+                  color: AppColors.blue,fontSize: 18
+              ),),
             ],
           ),
         ),
