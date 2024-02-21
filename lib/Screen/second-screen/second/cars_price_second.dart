@@ -2,10 +2,10 @@ import 'dart:convert';
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:homework12/models/car_models2.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../data/models/car_models2.dart';
 import '../../../utils/color/color.dart';
 import '../../../utils/fonts/fonts.dart';
 class CarPriceSecond extends StatefulWidget {

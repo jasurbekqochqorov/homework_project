@@ -4,7 +4,7 @@ import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 
-import 'first_screen/first/car.dart';
+import 'first_screen/first/car_datails.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});
