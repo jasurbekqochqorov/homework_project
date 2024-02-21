@@ -1,4 +1,4 @@
 class NetworkResponse{
-  late late final String errorText='';
+  String errorText='';
   dynamic data;
 }

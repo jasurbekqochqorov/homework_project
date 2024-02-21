@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:homework12/Screen/second-screen/first/cars_second.dart';
+import 'package:homework12/Screen/homework_first/Categories/categories_screen.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 
+import 'Example_second/AllProducts/laptop_screen.dart';
 import 'first_screen/first/car_datails.dart';
 
 class MainScreen extends StatelessWidget {
@@ -21,7 +22,7 @@ class MainScreen extends StatelessWidget {
           TextButton(
             onPressed: (){
               Navigator.push(context,MaterialPageRoute(builder: (context){
-                return const Cars();
+                return const LaptopScreen();
               }));
             },
             style: TextButton.styleFrom(
@@ -39,7 +40,7 @@ class MainScreen extends StatelessWidget {
           TextButton(
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return const SecondCars();
+                return const CategoriesScreen();
               }));
             },
             style: TextButton.styleFrom(

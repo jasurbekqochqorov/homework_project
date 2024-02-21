@@ -8,7 +8,7 @@ import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../data/models/car_models2.dart';
+import '../../../data/models/Cars/car_models2.dart';
 
 class CarsPrice extends StatefulWidget {
   const CarsPrice({super.key, required this.id});

@@ -6,7 +6,7 @@ import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:http/http.dart' as http;
 
-import '../../data/models/examle_models.dart';
+import '../../data/models/Cars/examle_models.dart';
 
 
 class Example extends StatefulWidget {
