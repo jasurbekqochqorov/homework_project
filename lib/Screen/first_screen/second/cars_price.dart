@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:carousel_slider/carousel_options.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
@@ -62,29 +64,67 @@ class _CarsPriceState extends State<CarsPrice> {
           title: Text(
             'Welcome to our market',
             style: AppTextStyle.interSemiBold
-                .copyWith(color: AppColors.blue, fontSize: 18.getW()),
+                .copyWith(color: AppColors.blue, fontSize: 24.getW()),
           ),
         ),
-        body: Column(
-          children: [
-            (carModels2 != null)
-                ? Column(
-                    children: [
-
-                      Text(carModels2!.carModel),
-                      Text(carModels2!.description),
-                    ],
-                  )
-                : Center(
-                    child: SizedBox(
-                      height: 100.getH(),
-                      width: 100.getW(),
-                      child: CircularProgressIndicator(
-                        strokeWidth: 10.getW(),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              (carModels2 != null)
+                  ? Column(
+                      children: [
+                        SizedBox(height: 30.getH(),),
+                        CarouselSlider(
+                            items:List.generate(carModels2!.pics.length, (index){
+                              return ClipRRect(
+                                borderRadius: BorderRadius.circular(20.getW()),
+                                child: Image.network(carModels2!.pics[index],width:300.getW(),fit: BoxFit.cover,),);
+                            }),
+                            options: CarouselOptions(
+                              aspectRatio:1.8,
+                              // viewportFraction: 0.8,
+                              enableInfiniteScroll: true,
+                              reverse: false,
+                              autoPlay: true,
+                              autoPlayInterval:const Duration(seconds: 3),
+                              autoPlayAnimationDuration:const Duration(milliseconds: 800),
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              enlargeCenterPage: true,
+                              enlargeFactor: 0.3,
+                              scrollDirection: Axis.horizontal,
+                            )
+                        ),
+                        Padding(padding:EdgeInsets.symmetric(
+                          horizontal: 20.getW(),vertical:20.getH()
+                        ),
+                        child:Column(children: [
+                        Image.network(carModels2!.logo.toString(),width: 200.getW(),height: 100.getH(),),
+                      SizedBox(height: 10.getH(),),
+                      Text('Year:${carModels2!.establishedYear.toString()}',style: AppTextStyle.interSemiBold.copyWith(
+                          color: AppColors.c_090F47,fontSize:24.getW()),),
+                      Text('Price:${carModels2!.averagePrice.toString()}\$',style: AppTextStyle.interSemiBold.copyWith(
+                        color: AppColors.c_090F47,fontSize: 24.getW(),
+                      ),),
+                        Text('Description: '+carModels2!.description,style: AppTextStyle.interRegular.copyWith(
+                          color: AppColors.black,fontSize: 20.getW()
+                        ),)
+                        ],),)
+                      ],
+                    )
+                  : Padding(
+                    padding: EdgeInsets.symmetric(vertical: 300.getH()),
+                    child: Center(
+                        child: SizedBox(
+                          height: 100.getH(),
+                          width: 100.getW(),
+                          child: CircularProgressIndicator(
+                            strokeWidth: 10.getW(),
+                          ),
+                        ),
                       ),
-                    ),
                   )
-          ],
+            ],
+          ),
         ));
   }
 }

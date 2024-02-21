@@ -64,7 +64,7 @@ class _CarsState extends State<Cars> {
               child: TextButton(
                   onPressed:(){
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return CarsPrice(id: index,);
+                      return CarsPrice(id: index+1,);
                     }));
                   },
                   style: TextButton.styleFrom(

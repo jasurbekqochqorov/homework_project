@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homework12/Screen/second-screen/first/cars_second.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -36,7 +37,11 @@ class MainScreen extends StatelessWidget {
           ),
           SizedBox(height: 20.getH(),),
           TextButton(
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (context){
+                return const SecondCars();
+              }));
+            },
             style: TextButton.styleFrom(
                 backgroundColor: AppColors.blue,
                 padding: EdgeInsets.symmetric(vertical: 10.getH()),
