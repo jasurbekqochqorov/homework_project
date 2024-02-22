@@ -11,4 +11,5 @@ class AllIcon{
 
 
   static String arrow='assets/icons/arrow.svg';
+  static String light='assets/icons/light.svg';
 }
