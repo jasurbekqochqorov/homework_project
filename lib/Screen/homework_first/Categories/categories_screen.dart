@@ -6,7 +6,6 @@ import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:zoom_tap_animation/zoom_tap_animation.dart';
-
 import '../../../data/network_response.dart';
 
 class CategoriesScreen extends StatefulWidget {

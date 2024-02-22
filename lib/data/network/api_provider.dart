@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:homework12/data/models/Agents/agents_models.dart';
 import 'package:homework12/data/models/categories/categories.dart';
 import 'package:http/http.dart' as http;
 
@@ -32,6 +33,24 @@ class ApiProvider {
 
       if (response.statusCode == 200) {
         networkResponse.data = (jsonDecode(response.body)as List).map((e) =>CategoriesModel.fromJson(e)).toList()??[];
+      } else {
+        networkResponse.errorText = "Internal error";
+      }
+    } catch (error) {
+      networkResponse.errorText = error.toString();
+    }
+    return networkResponse;
+  }
+
+
+  static Future<NetworkResponse> fetchAgents() async {
+    NetworkResponse networkResponse = NetworkResponse();
+    try {
+      http.Response response = await http
+          .get(Uri.parse("https://valorant-api.com/v1/agents"));
+
+      if (response.statusCode == 200) {
+        networkResponse.data = (jsonDecode(response.body)['data'] as List).map((e) =>AgentsModel.fromJson(e)).toList()??[];
       } else {
         networkResponse.errorText = "Internal error";
       }

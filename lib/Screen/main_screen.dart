@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homework12/Screen/AgentsScreen/agents_Screen.dart';
 import 'package:homework12/Screen/homework_first/Categories/categories_screen.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
@@ -40,7 +41,7 @@ class MainScreen extends StatelessWidget {
           TextButton(
             onPressed: (){
               Navigator.push(context, MaterialPageRoute(builder: (context){
-                return const CategoriesScreen();
+                return const AgentsScreen();
               }));
             },
             style: TextButton.styleFrom(
