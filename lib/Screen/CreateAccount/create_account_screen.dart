@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:homework12/Screen/CreateAccount/widget/form_widget.dart';
+import 'package:homework12/Screen/EmptyScreen/empty_screen.dart';
+import 'package:homework12/data/local/storage_repository.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -14,6 +16,9 @@ class CreateAccountScreen extends StatefulWidget {
 }
 
 class _CreateAccountScreenState extends State<CreateAccountScreen> {
+  TextEditingController nameController=TextEditingController();
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,11 +33,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   color: AppColors.white,fontSize: 28.getW()
                 ),),
                 SizedBox(height: 127.getH(),),
-                FormWidget(title: 'Full name',),
+                FormWidget(title: 'Full name',controller: nameController,),
+                SizedBox(height:32.getH()),
+                FormWidget(title: 'Emial',controller: emailController,),
                 SizedBox(height:32.getH(),),
-                FormWidget(title: 'Emial',),
-                SizedBox(height:32.getH(),),
-                FormWidget(title: 'Password',),
+                FormWidget(title: 'Password',controller: passwordController,),
                 SizedBox(height:32.getH(),),
                 Container(
                   width: double.infinity,
@@ -45,14 +50,22 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         borderRadius: BorderRadius.circular(4.getW()),
                       )
                     ),
-                      onPressed:(){},
-                      child:Text('Validate')),
+                      onPressed:(){
+                      StorageRepository.setString(key:'name', value:nameController.text.toString());
+                      StorageRepository.setString(key:'email', value:emailController.text);
+                      StorageRepository.setString(key:'password', value:passwordController.text);
+                      // setState(() {});
+                      Navigator.push(context,MaterialPageRoute(builder: (context){
+                        return EmptyScreen();
+                      }));
+                      },
+                      child:const Text('Validate')),
                 ),
                 SizedBox(height: 40.getH(),),
                 TextButton(
                   onPressed: (){
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return LoginScreen();
+                      return const LoginScreen();
                     }));
                   },
                   child: Text('Already have an account ? Login',style: AppTextStyle.interSemiBold.copyWith(

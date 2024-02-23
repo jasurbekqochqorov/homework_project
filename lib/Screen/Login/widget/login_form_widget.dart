@@ -6,14 +6,15 @@ import '../../../utils/color/color.dart';
 
 
 
-class FormWidget extends StatefulWidget {
-  const FormWidget({super.key, required this.title,});
+class FormWidgetLogin extends StatefulWidget {
+  const FormWidgetLogin({super.key, required this.title, required this.controller,});
   final String title;
+  final TextEditingController controller;
   @override
-  State<FormWidget> createState() => _FormWidgetState();
+  State<FormWidgetLogin> createState() => _FormWidgetState();
 }
 
-class _FormWidgetState extends State<FormWidget> {
+class _FormWidgetState extends State<FormWidgetLogin> {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -26,6 +27,7 @@ class _FormWidgetState extends State<FormWidget> {
           ),),
           SizedBox(height: 8.getH(),),
           TextFormField(
+            controller: widget.controller,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.symmetric(vertical: 8.getH(),horizontal: 16.getW()),
                 focusedBorder: OutlineInputBorder(

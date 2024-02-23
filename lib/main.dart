@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:homework12/Screen/main_screen.dart';
+import 'package:homework12/data/local/storage_repository.dart';
 import 'package:homework12/utils/global/global.dart';
 
 void main(){
+  StorageRepository();
   runApp(const MyApp());
 
 }

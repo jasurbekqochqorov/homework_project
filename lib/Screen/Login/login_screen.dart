@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:homework12/Screen/CreateAccount/widget/form_widget.dart';
+import 'package:homework12/Screen/EmptyScreen/empty_screen.dart';
+import 'package:homework12/Screen/Login/widget/login_form_widget.dart';
+import 'package:homework12/data/local/storage_repository.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -15,6 +18,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _CreateAccountScreenState extends State<LoginScreen> {
+  TextEditingController emailController=TextEditingController();
+  TextEditingController passwordController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,9 +34,9 @@ class _CreateAccountScreenState extends State<LoginScreen> {
                     color: AppColors.white,fontSize: 28.getW()
                 ),),
                 SizedBox(height: 215.getH(),),
-                FormWidget(title: 'Emial',),
+                FormWidgetLogin(title: 'Emial',controller:emailController,),
                 SizedBox(height:32.getH(),),
-                FormWidget(title: 'Password',),
+                FormWidgetLogin(title: 'Password', controller:passwordController,),
                 SizedBox(height:32.getH(),),
                 Container(
                   width: double.infinity,
@@ -44,7 +49,20 @@ class _CreateAccountScreenState extends State<LoginScreen> {
                             borderRadius: BorderRadius.circular(4.getW()),
                           )
                       ),
-                      onPressed:(){},
+                      onPressed:(){
+                        if(emailController.text==StorageRepository.getString(key:'email') && passwordController.text==StorageRepository.getString(key:'password')){
+                         Navigator.push(context,MaterialPageRoute(builder: (context){
+                           return const EmptyScreen();
+                         }));
+                        }
+                        else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text("Something is error${StorageRepository.getString(key:'email')}",
+                                textAlign: TextAlign.end, style: TextStyle(fontSize: 16.0, fontWeight:
+                                FontWeight.bold),), duration: Duration(seconds: 2), backgroundColor: Colors.red,)
+                          );
+                        }
+                      },
                       child:Text('Validate')),
                 ),
                 SizedBox(height: 40.getH(),),

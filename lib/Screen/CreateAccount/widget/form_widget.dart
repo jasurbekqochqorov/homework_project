@@ -7,8 +7,9 @@ import '../../../utils/color/color.dart';
 
 
 class FormWidget extends StatefulWidget {
-  const FormWidget({super.key, required this.title,});
+  const FormWidget({super.key, required this.title, required this.controller,});
   final String title;
+  final TextEditingController controller;
   @override
   State<FormWidget> createState() => _FormWidgetState();
 }
@@ -26,6 +27,7 @@ class _FormWidgetState extends State<FormWidget> {
         ),),
         SizedBox(height: 8.getH(),),
         TextFormField(
+          controller:widget.controller,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(vertical: 8.getH(),horizontal: 16.getW()),
             focusedBorder: OutlineInputBorder(
