@@ -51,13 +51,21 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       )
                     ),
                       onPressed:(){
-                      StorageRepository.setString(key:'name', value:nameController.text.toString());
-                      StorageRepository.setString(key:'email', value:emailController.text);
-                      StorageRepository.setString(key:'password', value:passwordController.text);
-                      // setState(() {});
-                      Navigator.push(context,MaterialPageRoute(builder: (context){
-                        return EmptyScreen();
-                      }));
+                        int k=0;
+                     if(StorageRepository.getString(key:'password')!=passwordController.text && StorageRepository.getString(key:'email')!=emailController.text){
+                       StorageRepository.setString(key:'name', value:nameController.text);
+                       StorageRepository.setString(key:'email', value:emailController.text);
+                       StorageRepository.setString(key:'password', value:passwordController.text);
+                       k=1;
+                       setState(() {});
+                     }
+                      (StorageRepository.getString(key:'email')==emailController.text && StorageRepository.getString(key:'password')==passwordController.text && k==1)?Navigator.push(context,MaterialPageRoute(builder: (context){
+                        return const EmptyScreen();
+                      })):ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text("Something is error",
+                            textAlign: TextAlign.end, style: TextStyle(fontSize: 16.0, fontWeight:
+                            FontWeight.bold),), duration: Duration(seconds: 2), backgroundColor: Colors.red,)
+                      );
                       },
                       child:const Text('Validate')),
                 ),

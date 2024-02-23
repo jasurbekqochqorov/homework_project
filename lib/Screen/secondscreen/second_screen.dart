@@ -8,6 +8,7 @@ import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:homework12/utils/icons/icon.dart';
 
+import '../../data/local/storage_repository.dart';
 import '../CreateAccount/create_account_screen.dart';
 
 class SecondScreen extends StatefulWidget {
@@ -80,6 +81,7 @@ class _SecondScreenState extends State<SecondScreen> {
             SizedBox(height: 40.getH(),),
             TextButton(
               onPressed:(){
+                StorageRepository.setString(key:'save', value:'save');
                 activeIndex++;
                 setState(() {});
                 if(activeIndex==5){

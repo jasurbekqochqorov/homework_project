@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homework12/Screen/CreateAccount/create_account_screen.dart';
 import 'package:homework12/Screen/secondscreen/second_screen.dart';
+import 'package:homework12/data/local/storage_repository.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -72,11 +73,11 @@ class MainScreen extends StatelessWidget {
               padding:EdgeInsets.symmetric(horizontal: 32.getW()),
               child: TextButton(
                 onPressed: (){
-                  (Global.k==1)?Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return CreateAccountScreen();
+                  (StorageRepository.getString(key:'save')=='save')?Navigator.push(context, MaterialPageRoute(builder: (context){
+                    return const CreateAccountScreen();
                   })):
                   Navigator.push(context,MaterialPageRoute(builder: (context){
-                    return SecondScreen();
+                    return const SecondScreen();
                   }));
                 },
                 style:TextButton.styleFrom(
