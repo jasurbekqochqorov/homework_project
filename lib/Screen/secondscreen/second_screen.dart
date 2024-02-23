@@ -43,8 +43,6 @@ class _SecondScreenState extends State<SecondScreen> {
                   ...List.generate(
                     onBoards.length,
                     (index) {
-                      activeIndex=index;
-                      setState(() {});
                       return OnBoarding(
                         title: onBoards[index].title,
                         index: index,
