@@ -7,16 +7,15 @@ import '../../../utils/color/color.dart';
 
 
 class FormWidget extends StatefulWidget {
-  const FormWidget({super.key, required this.title, required this.controller,});
+  const FormWidget({super.key, required this.title, required this.controller, required this.regExp,});
   final String title;
   final TextEditingController controller;
+  final RegExp regExp;
   @override
   State<FormWidget> createState() => _FormWidgetState();
 }
 
 class _FormWidgetState extends State<FormWidget> {
-  final _formKey = GlobalKey<FormState>();
-  RegExp regExp = RegExp(r'^[\w-]+(\.[\w-]+)*@[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*(\.[a-zA-Z]{2,})$');
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -28,33 +27,34 @@ class _FormWidgetState extends State<FormWidget> {
           color: AppColors.white,fontSize: 18.getW()
         ),),
         SizedBox(height: 8.getH(),),
-        Form(
-          key: _formKey,
-          child: TextFormField(
-            validator:(value){
-              if(value!.isEmpty && regExp.hasMatch(value)){
-                return 'ok';
-              }
-              else{
-                return 'error';
-              }
-            },
-            controller:widget.controller,
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.symmetric(vertical: 8.getH(),horizontal: 16.getW()),
-              focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.getW()),
-                  borderSide:BorderSide(width: 1,color: AppColors.white)
-              ),
-              enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(4.getW()),
-                  borderSide:BorderSide(width: 1,color: AppColors.white)
-              ),
-              hintText: widget.title,
-              hintStyle: AppTextStyle.interRegular.copyWith(
-                color: AppColors.white,fontSize: 16.getW()
-              )
+        TextFormField(
+          validator:(String? value){
+            if(value!.isEmpty || value==null || !widget.regExp.hasMatch(value)){
+              return 'error';
+            }
+            else{
+              return null;
+            }
+          },
+          controller:widget.controller,
+          decoration: InputDecoration(
+            contentPadding: EdgeInsets.symmetric(vertical: 8.getH(),horizontal: 16.getW()),
+            focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.getW()),
+                borderSide:BorderSide(width: 1,color: AppColors.white)
             ),
+            errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(4.getW()),
+        borderSide:BorderSide(width: 1,color:Colors.red)
+    ),
+            enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.getW()),
+                borderSide:BorderSide(width: 1,color: AppColors.white)
+            ),
+            hintText: widget.title,
+            hintStyle: AppTextStyle.interRegular.copyWith(
+              color: AppColors.white,fontSize: 16.getW()
+            )
           ),
         ),
       ],),
