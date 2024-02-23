@@ -2,14 +2,14 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:homework12/Screen/conexsionScreen/conexsion_screen.dart';
 import 'package:homework12/Screen/secondscreen/widget/widget.dart';
-import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:homework12/utils/icons/icon.dart';
 
 import '../../data/local/storage_repository.dart';
-import '../CreateAccount/create_account_screen.dart';
+import '../../utils/color/color.dart';
 
 class SecondScreen extends StatefulWidget {
   const SecondScreen({super.key});
@@ -19,96 +19,132 @@ class SecondScreen extends StatefulWidget {
 }
 
 class _SecondScreenState extends State<SecondScreen> {
-
-  List<OnBoard> onBoards=[
-    OnBoard(title:'The best tech market', image:AllIcon.map),
-    OnBoard(title:'A lot of exclusives', image:AllIcon.computer),
-    OnBoard(title:'Sales all the time', image:AllIcon.percent),
-    OnBoard(title:'Sales all the time', image:''),
+  List<OnBoard> onBoards = [
+    OnBoard(title: 'The best tech market', image: AllIcon.map),
+    OnBoard(title: 'A lot of exclusives', image: AllIcon.computer),
+    OnBoard(title: 'Sales all the time', image: AllIcon.percent),
   ];
-  int activeIndex=1;
+  int activeIndex = 0;
+
   @override
   Widget build(BuildContext context) {
+    width=MediaQuery.of(context).size.width;
+    height=MediaQuery.of(context).size.height;
     return AnnotatedRegion(
-      value: const SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent
-      ),
+      value: const SystemUiOverlayStyle(statusBarColor: Colors.transparent),
       child: Scaffold(
         backgroundColor: AppColors.c_0001FC,
-        body: Column(children: [
-          Expanded(
-            child: PageView(
-              scrollDirection: Axis.horizontal,
-              children:[
-               ...List.generate(onBoards.length, (index) =>OnBoarding(title: onBoards[activeIndex-1].title,index:activeIndex-1,image:onBoards[activeIndex-1].image,),),
-
-              ],
+        body: Column(
+          children: [
+            Expanded(
+              child: PageView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  ...List.generate(
+                    onBoards.length,
+                    (index) {
+                      activeIndex=index;
+                      setState(() {});
+                      return OnBoarding(
+                        title: onBoards[index].title,
+                        index: index,
+                        image: onBoards[index].image,
+                      );
+                    },
+                  ),
+                  Text('adsfa',style: AppTextStyle.interSemiBold.copyWith(
+                    color: AppColors.white,fontSize: 30
+                  ),)
+                ],
+              ),
             ),
-          ),
-          Padding(padding: EdgeInsets.only(bottom: 79.getH()),child:Column(children: [
-            SizedBox(height: 41.getH(),),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  width:10.getW(),height: 10.getH(),
-                  decoration:BoxDecoration(
-                    color: (activeIndex==1)?AppColors.white:AppColors.black,
-                    shape: BoxShape.circle,
-                  ),),
-                SizedBox(width: 5.getW(),),
-                Container(
-                  width:10.getW(),height: 10.getH(),
-                  decoration:BoxDecoration(
-                    color: (activeIndex==2)?AppColors.white:AppColors.black,
-                    shape: BoxShape.circle,
-                  ),),
-                SizedBox(width: 5.getW(),),
-                Container(
-                  width:10.getW(),height: 10.getH(),
-                  decoration:BoxDecoration(
-                    color:(activeIndex==3)?AppColors.white:AppColors.black,
-                    shape: BoxShape.circle,
-                  ),),
-                SizedBox(width: 5.getW(),),
-                Container(
-                  width:10.getW(),height: 10.getH(),
-                  decoration:BoxDecoration(
-                    color:(activeIndex==4)?AppColors.white:AppColors.black,
-                    shape: BoxShape.circle,
-                  ),),
-              ],),
-            SizedBox(height: 40.getH(),),
-            TextButton(
-              onPressed:(){
-                StorageRepository.setString(key:'save', value:'save');
-                activeIndex++;
-                setState(() {});
-                if(activeIndex==5){
-                  Navigator.push(context,MaterialPageRoute(builder:(context){
-                    return const CreateAccountScreen();
-                  }));
-                }
-                },
-              child:(activeIndex==4)?Text('Skip for now',style: AppTextStyle.interSemiBold.copyWith(
-                  color: AppColors.white,fontSize: 18.getW()
-              ),):
-              Text('Next',style: AppTextStyle.interSemiBold.copyWith(
-            color: AppColors.white,fontSize: 18.getW()
-    ),),
+            Padding(
+              padding: EdgeInsets.only(bottom: 79.getH()),
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 41.getH(),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 10.getW(),
+                        height: 10.getH(),
+                        decoration: BoxDecoration(
+                          color: (activeIndex == 1)
+                              ? AppColors.white
+                              : AppColors.black,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5.getW(),
+                      ),
+                      Container(
+                        width: 10.getW(),
+                        height: 10.getH(),
+                        decoration: BoxDecoration(
+                          color: (activeIndex == 2)
+                              ? AppColors.white
+                              : AppColors.black,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                      SizedBox(
+                        width: 5.getW(),
+                      ),
+                      Container(
+                        width: 10.getW(),
+                        height: 10.getH(),
+                        decoration: BoxDecoration(
+                          color: (activeIndex == 3)
+                              ? AppColors.white
+                              : AppColors.black,
+                          shape: BoxShape.circle,
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 40.getH(),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      StorageRepository.setString(key: 'save', value: 'save');
+                      setState(() {});
+                      if (activeIndex == 3) {
+                        Navigator.push(context,
+                            MaterialPageRoute(builder: (context) {
+                          return const ConnextionScreen();
+                        }));
+                      }
+                      if(activeIndex<3){
+                        activeIndex++;
+                      }
+                    },
+                    child: Text(
+                            'Next',
+                            style: AppTextStyle.interSemiBold.copyWith(
+                                color: AppColors.white, fontSize: 18.getW()),
+                          ),
+                  )
+                ],
+              ),
             )
-          ],),)
-        ],),
+          ],
+        ),
       ),
     );
   }
 }
 
-class OnBoard{
-   String title;
+class OnBoard {
+  String title;
   String image;
+
   OnBoard({
     required this.title,
     required this.image,
-});
+  });
 }

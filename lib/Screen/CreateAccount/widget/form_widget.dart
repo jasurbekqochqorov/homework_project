@@ -28,6 +28,9 @@ class _FormWidgetState extends State<FormWidget> {
         ),),
         SizedBox(height: 8.getH(),),
         TextFormField(
+          style:AppTextStyle.interSemiBold.copyWith(
+            color: AppColors.white
+          ),
           validator:(String? value){
             if(value!.isEmpty || value==null || !widget.regExp.hasMatch(value)){
               return 'error';
@@ -41,15 +44,18 @@ class _FormWidgetState extends State<FormWidget> {
             contentPadding: EdgeInsets.symmetric(vertical: 8.getH(),horizontal: 16.getW()),
             focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(4.getW()),
-                borderSide:BorderSide(width: 1,color: AppColors.white)
+                borderSide:const BorderSide(width: 1,color: AppColors.white)
             ),
+            focusedErrorBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(4.getW()),
+                borderSide:const BorderSide(width: 1,color:Colors.red)),
             errorBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(4.getW()),
-        borderSide:BorderSide(width: 1,color:Colors.red)
+        borderSide:const BorderSide(width: 1,color:Colors.red)
     ),
             enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(4.getW()),
-                borderSide:BorderSide(width: 1,color: AppColors.white)
+                borderSide:const BorderSide(width: 1,color: AppColors.white)
             ),
             hintText: widget.title,
             hintStyle: AppTextStyle.interRegular.copyWith(

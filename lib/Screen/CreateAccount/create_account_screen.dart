@@ -38,7 +38,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   SizedBox(height: 127.getH(),),
                   FormWidget(title: 'Full name',controller: nameController,regExp:RegExp(r'^[a-zA-Z ]+$'),),
                   SizedBox(height:32.getH()),
-                  FormWidget(title: 'Emial',controller: emailController,regExp: RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'),),
+                  FormWidget(title: 'Email',controller: emailController,regExp: RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$'),),
                   SizedBox(height:32.getH(),),
                   FormWidget(title: 'Password',controller: passwordController,regExp: RegExp(r'^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$'),),
                   SizedBox(height:32.getH(),),
@@ -63,7 +63,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                          setState(() {});
                        }
                             bool validated = _formKey.currentState!.validate();
-                            if (validated) {
+                            if (validated){
                               if((StorageRepository.getString(key:'email')==emailController.text && StorageRepository.getString(key:'password')==passwordController.text && k==1)){
                                 ScaffoldMessenger.of(context).showSnackBar(
                                     const SnackBar(content: Text("SUCCESS!")));
@@ -86,7 +86,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
                                   backgroundColor: Colors.red,
-                                  content: Text(
+                                   content: Text(
                                     "ERROR!",
                                     style: AppTextStyle.interSemiBold
                                         .copyWith(color: AppColors.white),
@@ -108,6 +108,16 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         color:AppColors.c_FBDF00
                     ),),
                   ),
+                  SizedBox(height:20.getH(),),
+                  TextButton(onPressed: (){
+                    if(StorageRepository.getString(key:'email')!='' && StorageRepository.getString(key:'password')!=''){
+                      Navigator.push(context,MaterialPageRoute(builder: (context){
+                        return const EmptyScreen();
+                      }));
+                    }
+                  }, child: Text('Skip for now',style: AppTextStyle.interSemiBold.copyWith(
+                    color: AppColors.white,fontSize: 18.getW()
+                  ),))
                 ],
               ),
             ),

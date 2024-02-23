@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homework12/Screen/main_screen.dart';
+import 'package:homework12/Screen/secondscreen/second_screen.dart';
 import 'package:homework12/data/local/storage_repository.dart';
 void main(){
 
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: MainScreen(),
+      home:SecondScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:homework12/Screen/CreateAccount/create_account_screen.dart';
+import 'package:homework12/Screen/conexsionScreen/conexsion_screen.dart';
 import 'package:homework12/Screen/secondscreen/second_screen.dart';
 import 'package:homework12/data/local/storage_repository.dart';
 import 'package:homework12/utils/color/color.dart';
@@ -9,7 +9,7 @@ import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:homework12/utils/icons/icon.dart';
 
-import '../utils/global/global.dart';
+import 'EmptyScreen/empty_screen.dart';
 
 
 class MainScreen extends StatelessWidget {
@@ -74,7 +74,7 @@ class MainScreen extends StatelessWidget {
               child: TextButton(
                 onPressed: (){
                   (StorageRepository.getString(key:'save')=='save')?Navigator.push(context, MaterialPageRoute(builder: (context){
-                    return const CreateAccountScreen();
+                    return const ConnextionScreen();
                   })):
                   Navigator.push(context,MaterialPageRoute(builder: (context){
                     return const SecondScreen();
@@ -93,9 +93,18 @@ class MainScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height:73.getH()),
-            Text('Skip for now',style: AppTextStyle.interRegular.copyWith(
-              color: AppColors.white,fontSize: 18.getW()
-            ),)
+            TextButton(
+              onPressed: (){
+                if(StorageRepository.getString(key:'email')!='' && StorageRepository.getString(key:'password')!=''){
+                  Navigator.push(context,MaterialPageRoute(builder: (context){
+                    return const EmptyScreen();
+                  }));
+                }
+              },
+              child: Text('Skip for now',style: AppTextStyle.interRegular.copyWith(
+                color: AppColors.white,fontSize: 18.getW()
+              ),),
+            )
           ],),
         ),
       ),
