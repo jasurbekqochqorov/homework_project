@@ -4,32 +4,31 @@ import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 
+import '../CreateAccount/create_account_screen.dart';
 import '../Login/login_screen.dart';
 
-class CreateAccountScreen extends StatefulWidget {
-  const CreateAccountScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  State<CreateAccountScreen> createState() => _CreateAccountScreenState();
+  State<LoginScreen> createState() => _CreateAccountScreenState();
 }
 
-class _CreateAccountScreenState extends State<CreateAccountScreen> {
+class _CreateAccountScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.c_0001FC,
-      body: Padding(
-        padding:EdgeInsets.only(top: 67.getH()),
-        child: SingleChildScrollView(
+      body: SingleChildScrollView(
+        child: Padding(
+          padding:EdgeInsets.only(top: 67.getH()),
           child: Center(
             child: Column(
               children: [
-                Text('Create an account',style: AppTextStyle.interBold.copyWith(
-                  color: AppColors.white,fontSize: 28.getW()
+                Text('Login',style: AppTextStyle.interBold.copyWith(
+                    color: AppColors.white,fontSize: 28.getW()
                 ),),
-                SizedBox(height: 127.getH(),),
-                FormWidget(title: 'Full name',),
-                SizedBox(height:32.getH(),),
+                SizedBox(height: 215.getH(),),
                 FormWidget(title: 'Emial',),
                 SizedBox(height:32.getH(),),
                 FormWidget(title: 'Password',),
@@ -38,13 +37,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   width: double.infinity,
                   margin:EdgeInsets.symmetric(horizontal: 32.getW()),
                   child: TextButton(
-                    style: TextButton.styleFrom(
-                      padding: EdgeInsets.symmetric(vertical: 16.getH()),
-                      backgroundColor: AppColors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(4.getW()),
-                      )
-                    ),
+                      style: TextButton.styleFrom(
+                          padding: EdgeInsets.symmetric(vertical: 16.getH()),
+                          backgroundColor: AppColors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4.getW()),
+                          )
+                      ),
                       onPressed:(){},
                       child:Text('Validate')),
                 ),
@@ -52,10 +51,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 TextButton(
                   onPressed: (){
                     Navigator.push(context,MaterialPageRoute(builder: (context){
-                      return LoginScreen();
+                      return CreateAccountScreen();
                     }));
                   },
-                  child: Text('Already have an account ? Login',style: AppTextStyle.interSemiBold.copyWith(
+                  child: Text('Don’t have an account? Sign-up',style: AppTextStyle.interSemiBold.copyWith(
                       color:AppColors.c_FBDF00
                   ),),
                 ),

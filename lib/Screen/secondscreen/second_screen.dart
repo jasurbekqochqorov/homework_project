@@ -2,7 +2,6 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homework12/Screen/secondscreen/widget/widget.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
@@ -21,9 +20,9 @@ class SecondScreen extends StatefulWidget {
 class _SecondScreenState extends State<SecondScreen> {
 
   List<OnBoard> onBoards=[
-    OnBoard(title:'The best tech market', image:''),
-    OnBoard(title:'A lot of exclusives', image:''),
-    OnBoard(title:'Sales all the time', image:''),
+    OnBoard(title:'The best tech market', image:AllIcon.map),
+    OnBoard(title:'A lot of exclusives', image:AllIcon.computer),
+    OnBoard(title:'Sales all the time', image:AllIcon.percent),
     OnBoard(title:'Sales all the time', image:''),
   ];
   int activeIndex=1;
@@ -40,7 +39,7 @@ class _SecondScreenState extends State<SecondScreen> {
             child: PageView(
               scrollDirection: Axis.horizontal,
               children:[
-               ...List.generate(onBoards.length, (index) =>OnBoarding(title: onBoards[activeIndex-1].title,index:activeIndex-1,),),
+               ...List.generate(onBoards.length, (index) =>OnBoarding(title: onBoards[activeIndex-1].title,index:activeIndex-1,image:onBoards[activeIndex-1].image,),),
 
               ],
             ),
