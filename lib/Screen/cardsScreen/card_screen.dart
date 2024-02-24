@@ -8,8 +8,8 @@ import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:homework12/utils/icons/icon.dart';
 
 class CardScreen extends StatefulWidget {
-  const CardScreen({super.key});
-
+  const CardScreen({super.key,this.onTap});
+  final VoidCallback? onTap;
   @override
   State<CardScreen> createState() => _CardScreenState();
 }
@@ -24,16 +24,24 @@ class _CardScreenState extends State<CardScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
+      appBar: AppBar(
+        leading: IconButton(
+            onPressed: (){
+              Navigator.pop(context);
+              widget.onTap!.call();
+            },
+            icon: Icon(Icons.arrow_back_ios_new,color: AppColors.white,)),
+        title: Text('My Cards',style: AppTextStyle.interMedium.copyWith(
+            color: AppColors.c_F9F9F9,fontSize:24.getW()
+        ),),
+        backgroundColor: AppColors.black,
+        centerTitle: true,
+      ),
       body: Column(
         children: [
-          Padding(
-            padding: EdgeInsets.only(top: 46.getH()),
-            child: Center(child: Text('My Cards',style: AppTextStyle.interMedium.copyWith(
-                color: AppColors.c_F9F9F9,fontSize:24.getW()
-            ),)),
-          ),
           SizedBox(height: 46.getH(),),
-          Expanded(
+          SizedBox(
+            height: 190.getH(),
             child: ListView(
               scrollDirection: Axis.horizontal,
               children:[

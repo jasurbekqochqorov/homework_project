@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:homework12/Screen/TransactionsScreen/widet./sort_widget.dart';
 import 'package:homework12/Screen/TransactionsScreen/widet/list_widget.dart';
@@ -8,7 +9,8 @@ import 'package:homework12/utils/icons/icon.dart';
 import '../../utils/color/color.dart';
 
 class TransactionScreen extends StatefulWidget {
-  const TransactionScreen({super.key});
+  const TransactionScreen({super.key, this.onTap});
+  final VoidCallback? onTap;
 
   @override
   State<TransactionScreen> createState() => _TransactionScreenState();
@@ -19,15 +21,26 @@ class _TransactionScreenState extends State<TransactionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: (){
+            Navigator.pop(context);
+            widget.onTap!.call();
+          },
+          icon: Icon(Icons.arrow_back_ios_new,color: AppColors.white,),
+        ),
+        backgroundColor: AppColors.black,
+        title: Text('Transaction',style: AppTextStyle.interMedium.copyWith(
+            color: AppColors.c_F9F9F9,fontSize: 24.getW()
+        ),),
+        centerTitle:true,
+      ),
       backgroundColor: AppColors.black,
       body: Padding(
-        padding: EdgeInsets.only(left: 27.getW(),right: 27.getW(),top:46.getH()),
+        padding: EdgeInsets.only(left: 27.getW(),right: 27.getW()),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Center(child: Text('Transaction',style: AppTextStyle.interMedium.copyWith(
-            color: AppColors.c_F9F9F9,fontSize: 24.getW()
-          ),),),
           SizedBox(height: 47.getH(),),
           Row(children: [
             Text('Recent',style: AppTextStyle.interMedium.copyWith(
