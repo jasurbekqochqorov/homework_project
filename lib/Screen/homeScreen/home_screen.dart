@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homework12/Screen/homeScreen/wdget/Cards.dart';
+import 'package:homework12/Screen/homeScreen/wdget/home-list_widget.dart';
 import 'package:homework12/Screen/homeScreen/wdget/widget.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
@@ -146,17 +147,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         SizedBox(height: 19.getH(),),
                         Container(
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(20.getW()),
                             color: AppColors.c_292929,
-                            borderRadius: BorderRadius.circular(20.getW(),),
                           ),
                           child: Column(children: [
-                            Cards(image:AllIcon.visa,card: 'Visa Card',code: '**3245',money: "\$2,200",date: '01/24',),
-                            Container(
-                              height: 1,
-                              width: width,color: AppColors.c_585858,
-                            ),
-                            Cards(image:AllIcon.visa2,card: 'Master Card',code: '**6339',money: "\$650",date: '04/24',),
-                    
+                            HomeListWidget(icon:AllIcon.box, money:'-\$200', title:'Grocery'),
+                            Container(width: width,height: 1,color: AppColors.c_585858,),
+                            HomeListWidget(icon:AllIcon.transaction, money:'-\$120', title:'IESCO Bill'),
                           ],),
                         ),
                       ],
