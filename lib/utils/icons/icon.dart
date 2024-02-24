@@ -14,6 +14,8 @@ class AllIcon{
 
 
   static String arrow='assets/icons/arrow.svg';
+  static String down='assets/icons/down.svg';
+  static String top='assets/icons/top.svg';
   static String home='assets/icons/home.svg';
   static String pin='assets/icons/pin.svg';
   static String remote='assets/icons/remote.svg';

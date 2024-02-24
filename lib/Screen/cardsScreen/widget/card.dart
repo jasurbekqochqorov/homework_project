@@ -17,7 +17,10 @@ class _VisaCardState extends State<VisaCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
+      // width: double.infinity,
+      width: width*0.88,
+      height: 150.getH(),
+      margin: EdgeInsets.symmetric(horizontal: 26),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20.getW()),
           gradient: LinearGradient(

@@ -7,9 +7,10 @@ import '../../../utils/color/color.dart';
 
 
 class ChangePinWidget extends StatefulWidget {
-  const ChangePinWidget({super.key, required this.image,required this.title});
+  const ChangePinWidget({super.key, required this.image,required this.title, required this.isActive});
   final String image;
   final String title;
+  final int isActive;
   @override
   State<ChangePinWidget> createState() => _ChangePinWidgetState();
 }
@@ -17,8 +18,14 @@ class ChangePinWidget extends StatefulWidget {
 class _ChangePinWidgetState extends State<ChangePinWidget> {
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 20.getW(),vertical: 17.getH()),
+    return TextButton(
+      style: TextButton.styleFrom(
+        padding: EdgeInsets.symmetric(horizontal: 20.getW(),vertical: 17.getH()),
+        shape: RoundedRectangleBorder(
+          borderRadius: (widget.isActive==1)?BorderRadius.only(topRight: Radius.circular(16.getW()),topLeft: Radius.circular(16.getW())):(widget.isActive==2)?BorderRadius.circular(0):BorderRadius.only(bottomLeft: Radius.circular(16.getW()),bottomRight: Radius.circular(16.getW())),
+        )
+      ),
+      onPressed: (){},
       child: Row(children: [
         Container(
           padding: EdgeInsets.symmetric(horizontal:15.getW(),vertical: 13.getH()),
