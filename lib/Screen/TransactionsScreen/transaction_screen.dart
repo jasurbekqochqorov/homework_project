@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:homework12/Screen/TransactionsScreen/widet./sort_widget.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -39,7 +38,7 @@ class _TransactionScreenState extends State<TransactionScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-            SortWidget(isHas:false, icon:AllIcon.down, title:'All'),
+            SortWidget(isHas:false, icon:AllIcon.down, title:'All',onTap:(){}),
             SortWidget(isHas:true, icon:AllIcon.down, title:'Income'),
             SortWidget(isHas:true, icon:AllIcon.top, title:'Expense'),
           ],)
