@@ -5,6 +5,7 @@ import 'package:homework12/Screen/cardsScreen/card_screen.dart';
 import 'package:homework12/Screen/homeScreen/home_screen.dart';
 import 'package:homework12/Screen/profileScreen/profile_screen.dart';
 import 'package:homework12/utils/color/color.dart';
+import 'package:homework12/utils/fonts/fonts.dart';
 import 'package:homework12/utils/icons/icon.dart';
 
 class MainScreen extends StatefulWidget {
@@ -41,12 +42,18 @@ class _MainScreenState extends State<MainScreen> {
         },
         currentIndex: activeIndex,
         type:BottomNavigationBarType.fixed,
+        unselectedLabelStyle: AppTextStyle.interMedium.copyWith(
+          color: AppColors.white.withOpacity(0.6)
+        ),
+        selectedLabelStyle: AppTextStyle.interMedium.copyWith(
+            color: AppColors.white.withOpacity(0.6)
+        ),
         items: [
           BottomNavigationBarItem(
-            backgroundColor: AppColors.black,
             activeIcon:  SvgPicture.asset(AllIcon.home,colorFilter:ColorFilter.mode(AppColors.blue,BlendMode.srcIn),),
             icon: SvgPicture.asset(AllIcon.home),
             label:'home',
+
           ),
           BottomNavigationBarItem(
             activeIcon:  SvgPicture.asset(AllIcon.card,colorFilter:ColorFilter.mode(AppColors.blue,BlendMode.srcIn),),

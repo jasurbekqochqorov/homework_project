@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:homework12/Screen/profileScreen/widget/list_widget_profile.dart';
+import 'package:homework12/Screen/profileScreen/widget/user_widget.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/extension/extension.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -88,7 +89,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
               color: AppColors.c_EEEEEE.withOpacity(0.8),fontSize:20.getW()
             ),),
             SizedBox(height: 31.getH(),),
-            Row(children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
               TextButton(
                 onPressed: (){},
                 style: TextButton.styleFrom(
@@ -106,14 +110,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Icon(Icons.add),
                 ),
               ),
-              Container(
-                width: 52.getW(),height:52.getH(),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle
-                ),
-                child:Image.asset(AllIcon.user1,width: 52.getW(),height: 52.getH(),fit: BoxFit.cover,),
-              ),
-            ],)
+              UserWidget(image:AllIcon.user1,title: 'Aliya',),
+              UserWidget(image:AllIcon.user2,title: 'Calira',),
+              UserWidget(image:AllIcon.user3,title: 'Bob',),
+              UserWidget(image:AllIcon.user4,title: 'Samy',),
+              UserWidget(image:AllIcon.user5,title: 'Sara',),
+            ],),
+            SizedBox(height: 43.getH(),),
+            const ListWidgetProfile(title: 'Amount',subTitle: '\$0.00',),
+            SizedBox(height: 21.getH(),),
+            const ListWidgetProfile(title: 'Purpose',subTitle: 'Education',),
         ],),
       ),
     );
