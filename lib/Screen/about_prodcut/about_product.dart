@@ -6,8 +6,9 @@ import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 
 class AboutProductScreen extends StatefulWidget {
-  const AboutProductScreen({super.key, required this.productModel});
+  const AboutProductScreen({super.key, required this.productModel, this.stream});
   final ProductModel productModel;
+  final Stream? stream;
   @override
   State<AboutProductScreen> createState() => _AboutProductScreenState();
 }
