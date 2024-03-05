@@ -54,7 +54,7 @@ class _MainScreenState extends State<MainScreen> {
                 crossAxisSpacing:10.w,
                 //horizontally
                 crossAxisCount: 2,
-                childAspectRatio:0.8,
+                childAspectRatio:0.7,
                 children: [
 
                   ...List.generate(
@@ -81,7 +81,8 @@ class _MainScreenState extends State<MainScreen> {
                                               child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Image.asset(products[index].imageUrl,width: 119.w,height:87.h,),
+                            SizedBox(height:8.h,),
+                            Center(child: Image.network(products[index].imageUrl,width: 100.w,height:110.h,)),
                             const Spacer(),
                             Text("name:${products[index].productName}",style: AppTextStyle.interMedium.copyWith(
                                 color: AppColors.black,fontSize: 20.sp

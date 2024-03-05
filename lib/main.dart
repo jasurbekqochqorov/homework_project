@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homework12/Screen/main_screen.dart';
@@ -14,6 +16,7 @@ class MyHttpOverrides extends HttpOverrides{
 
 void main(){
 
+  HttpOverrides.global = MyHttpOverrides();
   runApp(const MyApp());
 
 }
