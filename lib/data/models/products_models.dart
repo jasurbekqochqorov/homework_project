@@ -1,44 +1,66 @@
 
 
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
-class ProductModels{
-  final String productName;
-  final String productId;
-  final DateTime dateTime;
-  final int price;
-  final String description;
-  final String imageUrl;
-  final String color;
-
-  ProductModels({
-    required this.productId,
-    required this.dateTime,
+class ProductModel {
+  ProductModel({
     required this.color,
     required this.description,
-    required this.price,
+    required this.productName,
     required this.imageUrl,
-    required this.productName
-});
+    required this.price,
+    required this.dateTime,
+    required this.productId,
+  });
 
-  factory ProductModels.fromJson(Map<String,dynamic> json){
-    return ProductModels(
-      productId: json['uuid'] as String? ?? "",
-      dateTime: DateTime.fromMicrosecondsSinceEpoch((json['_created'] as num).toInt()*1000),
-      color:(json['color'] as String? ?? "FFFFFF").toColor(),
-        description: json['description'] as String? ?? "",
-        price: json['price'] as int? ?? 200,
-        imageUrl: json['image_url'] as String? ?? "",
-        productName: json['product_name'] as String? ?? "",
+  final String productName;
+  final double price;
+  final String description;
+  final Color color;
+  final String imageUrl;
+  final String productId;
+  final DateTime dateTime;
+
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
+    return ProductModel(
+      productName: json["product_name"] as String? ?? "",
+      description: json["description"] as String? ?? "",
+      imageUrl: json["image_url"] as String? ?? "",
+      price: (json["price"] as num? ?? 0.0).toDouble(),
+      color: (json["color"] as String? ?? "FFFFFF").toColor(),
+      dateTime: DateTime.fromMillisecondsSinceEpoch(
+          (json["_created"] as num).toInt() * 1000),
+      productId: json["_uuid"] as String? ?? "",
     );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      "product_name": productName,
+      "price": price,
+      "description": description,
+      "color": "FF0000",
+      "image_url": imageUrl,
+    };
+  }
+
+  Map<String, dynamic> toJsonForUpdate() {
+    return {
+      "product_name": productName,
+      "price": price,
+      "description": description,
+      "color": "FF0000",
+      "image_url": imageUrl,
+      "_uuid": productId,
+    };
   }
 }
 
 extension ColorExtension on String {
   toColor() {
-    var hexColor = this.replaceAll("#", "");
+    var hexColor = replaceAll("#", "");
     if (hexColor.length == 6) {
-      hexColor = "FF" + hexColor;
+      hexColor = "FF$hexColor";
     }
     if (hexColor.length == 8) {
       return Color(int.parse("0x$hexColor"));
