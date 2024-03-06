@@ -7,15 +7,24 @@ import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 
 class AboutProductScreen extends StatefulWidget {
-  const AboutProductScreen({super.key, required this.productModel, this.stream});
+  const AboutProductScreen({super.key, required this.productModel});
   final ProductModel productModel;
-  final Stream? stream;
   @override
   State<AboutProductScreen> createState() => _AboutProductScreenState();
+
 }
 
 class _AboutProductScreenState extends State<AboutProductScreen> {
   ProductsRepository productsRepository=ProductsRepository();
+
+  _init(){
+    setState(() {});
+  }
+  @override
+  void initState() {
+    _init();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,90 +67,86 @@ class _AboutProductScreenState extends State<AboutProductScreen> {
             setState(() {});
           }, icon:const Icon(Icons.delete,color: Colors.red,)),
         IconButton(onPressed: (){
-          setState(() {});
-        }, icon:Icon(Icons.refresh,color: AppColors.blue,))
+          _init();
+        }, icon:const Icon(Icons.refresh,color: AppColors.blue,))
         ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding:EdgeInsets.symmetric(horizontal:16.w),
-            child: Expanded(
-              child: RefreshIndicator(
-                onRefresh: ()async{
-                  setState(() {});
-                },
-                child: SingleChildScrollView(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-
+          Expanded(
+            child: SingleChildScrollView(
+              child: Padding(
+                padding:EdgeInsets.symmetric(horizontal:16.w),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
                     Padding(
-                        padding: EdgeInsets.symmetric(vertical:20.h),
-                        child: Image.network(widget.productModel.imageUrl)),
-                    SizedBox(height: 20.h,),
+                      padding: EdgeInsets.symmetric(vertical:20.h,horizontal:30.w),
+                      child: Image.network(widget.productModel.imageUrl)),
+                  SizedBox(height: 20.h,),
+                  RichText(
+                    text:TextSpan(
+                      text:"Name: ",
+                      style: AppTextStyle.interMedium.copyWith(
+                        color: AppColors.black,fontSize:20.sp
+                      ),
+                      children: [
+                        TextSpan(
+                          text: widget.productModel.productName,
+                          style: AppTextStyle.interMedium.copyWith(
+                            color: AppColors.c_FFC000,fontSize:20.sp
+                          )
+                        )
+                      ]
+                    )
+                  ),
+                    SizedBox(height:10.h,),
                     RichText(
-                      text:TextSpan(
-                        text:"Name: ",
-                        style: AppTextStyle.interMedium.copyWith(
-                          color: AppColors.black,fontSize:20.sp
-                        ),
-                        children: [
-                          TextSpan(
-                            text: widget.productModel.productName,
+                        text:TextSpan(
+                            text:"Price: ",
                             style: AppTextStyle.interMedium.copyWith(
-                              color: AppColors.c_FFC000,fontSize:20.sp
-                            )
-                          )
-                        ]
-                      )
+                                color: AppColors.black,fontSize:20.sp
+                            ),
+                            children: [
+                              TextSpan(
+                                  text: "${widget.productModel.price}\$",
+                                  style: AppTextStyle.interMedium.copyWith(
+                                      color: AppColors.c_FFC000,fontSize:20.sp
+                                  )
+                              )
+                            ]
+                        )
                     ),
-                      SizedBox(height:10.h,),
-                      RichText(
-                          text:TextSpan(
-                              text:"Price: ",
-                              style: AppTextStyle.interMedium.copyWith(
-                                  color: AppColors.black,fontSize:20.sp
-                              ),
-                              children: [
-                                TextSpan(
-                                    text: "${widget.productModel.price}\$",
-                                    style: AppTextStyle.interMedium.copyWith(
-                                        color: AppColors.c_FFC000,fontSize:20.sp
-                                    )
-                                )
-                              ]
-                          )
-                      ),
-                      SizedBox(height:10.h,),
-                      RichText(
-                          text:TextSpan(
-                              text:"Description: ",
-                              style: AppTextStyle.interMedium.copyWith(
-                                  color: AppColors.black,fontSize:20.sp
-                              ),
-                              children: [
-                                TextSpan(
-                                    text: widget.productModel.description,
-                                    style: AppTextStyle.interMedium.copyWith(
-                                        color: AppColors.c_FFC000,fontSize:20.sp
-                                    )
-                                )
-                              ]
-                          )
-                      ),
-                  ],),
-                ),
-              ),
+                    SizedBox(height:10.h,),
+                    RichText(
+                        text:TextSpan(
+                            text:"Description: ",
+                            style: AppTextStyle.interMedium.copyWith(
+                                color: AppColors.black,fontSize:20.sp
+                            ),
+                            children: [
+                              TextSpan(
+                                  text: widget.productModel.description,
+                                  style: AppTextStyle.interMedium.copyWith(
+                                      color: AppColors.c_FFC000,fontSize:20.sp
+                                  )
+                              )
+                            ]
+                        )
+                    ),
+                ],),),
             ),
-          ),Spacer(),
+          ),
+          // ),Spacer(),
           Container(
             margin: EdgeInsets.symmetric(horizontal:10.w),
             width: double.infinity,
               child: TextButton(onPressed: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context){
-                  return UpdateScreen(productModel: widget.productModel);
+                  return UpdateScreen(productModel: widget.productModel,onUpdate:(){
+                    setState(() {});
+                  },);
                 }));
               },
                   style: TextButton.styleFrom(

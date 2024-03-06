@@ -7,8 +7,9 @@ import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
 
 class UpdateScreen extends StatefulWidget {
-  const UpdateScreen({super.key, required this.productModel});
+  const UpdateScreen({super.key, required this.productModel, required this.onUpdate});
   final ProductModel productModel;
+  final VoidCallback onUpdate;
   @override
   State<UpdateScreen> createState() => _UpdateScreenState();
 }
@@ -38,7 +39,7 @@ class _UpdateScreenState extends State<UpdateScreen> {
                 price:priceController.text==""?widget.productModel.price:double.parse(priceController.text),
                 dateTime: DateTime.now(),
                 productId:widget.productModel.productId);
-            await productsRepository.updateProducts(productModel);
+            widget.onUpdate.call();
             setState(() {});
             Navigator.pop(context);
           }, icon: const Icon(Icons.check,))

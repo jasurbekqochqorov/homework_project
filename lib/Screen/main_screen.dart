@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homework12/data/models/my_responce.dart';
@@ -18,8 +20,14 @@ class MainScreen extends StatefulWidget {
   State<MainScreen> createState() => _MainScreenState();
 }
 
-class _MainScreenState extends State<MainScreen> {
+class _MainScreenState<bool> extends State<MainScreen> {
+  StreamController streamController=StreamController<bool>();
     ProductsRepository productsRepository=ProductsRepository();
+    @override
+  void initState() {
+      // streamController.add(true);
+      super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,6 +54,7 @@ class _MainScreenState extends State<MainScreen> {
             }
             if(snapshot.hasData){
               List<ProductModel> products=(snapshot.data as MyResponse).data as List<ProductModel>;
+              streamController.add(true);
               return GridView.count(
                 scrollDirection: Axis.vertical,
                 padding: EdgeInsets.symmetric(horizontal: 16.w,vertical:40.h),
@@ -56,7 +65,6 @@ class _MainScreenState extends State<MainScreen> {
                 crossAxisCount: 2,
                 childAspectRatio:0.7,
                 children: [
-
                   ...List.generate(
                     products.length,
                         (index) =>ZoomTapAnimation(
@@ -106,7 +114,7 @@ class _MainScreenState extends State<MainScreen> {
       floatingActionButton: FloatingActionButton(
       onPressed: ()async{
         Navigator.push(context,MaterialPageRoute(builder: (context){
-          return AddScreen();
+          return const AddScreen();
         }));
       },
         backgroundColor: AppColors.blue,
