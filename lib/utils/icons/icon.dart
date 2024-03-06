@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AllIcon{
+class AppImages{
 
   static String motors='assets/images/img.png';
+  static String onSplash='assets/images/img_1.png';
 
 
 
