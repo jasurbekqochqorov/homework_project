@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:homework12/Screen/Home/main_screen.dart';
+import 'package:homework12/Screen/Home/home_screen.dart';
 import 'package:homework12/Screen/splash/splash_screen.dart';
 
 void main(){
