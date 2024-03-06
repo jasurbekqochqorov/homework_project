@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:homework12/Screen/Home/main_screen.dart';
 import 'package:homework12/Screen/splash/splash_screen.dart';
 
@@ -13,9 +14,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: SplashScreen(),
-      debugShowCheckedModeBanner: false,
+    return ScreenUtilInit(
+      designSize: const Size(428,990),
+      builder: (context,child){
+        return  MaterialApp(
+          home: child,
+          debugShowCheckedModeBanner: false,
+        );
+      },
+      child: const SplashScreen(),
     );
   }
 }
