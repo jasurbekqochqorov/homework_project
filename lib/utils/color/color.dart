@@ -10,6 +10,7 @@ class AppColors{
   static const Color c_72090F47=Color(0x72090F47);
   static const Color c_090F47=Color(0xFF090F47);
   static const Color c_F7FBFF=Color(0xFFF7FBFF);
+  static const Color c_D17842=Color(0xFFD17842);
   static const Color c_FF9598=Color(0xFFFF9598);
   static const Color c_FF70A7=Color(0xFFFF70A7);
   static const Color c_19E5A5=Color(0xFF19E5A5);
@@ -28,4 +29,5 @@ class AppColors{
   static const Color c_FCF5E7=Color(0xFFFCF5E7);
   static const Color c_9A9A9A=Color(0xFF9A9A9A);
   static const Color c_FFE1D5=Color(0xFFFFE1D5);
+  static const Color c_FFFFFF=Color(0xFFFFFFFF);
 }

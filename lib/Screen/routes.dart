@@ -19,10 +19,10 @@ class AppRoutes {
           return navigate(const HomeScreen());
         }
 
-      case RouteNames.aboutScreen:
-        {
-          return navigate(const AboutScreen());
-        }
+      // case RouteNames.aboutScreen:
+      //   {
+      //     // return navigate(const AboutScreen());
+      //   }
 
       default:{
         return navigate(const Scaffold(body: Center(child: Text('Bunday screen yoq'),),));

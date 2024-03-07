@@ -1,7 +1,7 @@
 
 
-enum Type{
-  X,
+enum TypeCoffee{
+  S,
   L,
   M
 }

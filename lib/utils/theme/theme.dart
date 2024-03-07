@@ -15,7 +15,7 @@ class AppTheme{
           statusBarColor: AppColors.white,
         )
     ),
-    // useMaterial3: true,
+    useMaterial3: true,
     colorScheme: const ColorScheme(
       brightness: Brightness.dark,
       primary: Color(0xFF0056D2),
@@ -55,7 +55,7 @@ class AppTheme{
     //     backgroundColor: AppColors.black
     //   )
     // ),
-    textTheme:TextTheme(
+    textTheme:TextTheme (
         displayLarge:TextStyle(
           fontSize: 57.sp,
           color: AppColors.black,
@@ -158,11 +158,11 @@ class AppTheme{
           statusBarColor: AppColors.black,
         )
     ),
-    iconButtonTheme: IconButtonThemeData(
-        style: IconButton.styleFrom(
-            backgroundColor: AppColors.white
-        )
-    ),
+    // iconButtonTheme: IconButtonThemeData(
+    //     style: IconButton.styleFrom(
+    //         backgroundColor: AppColors.white
+    //     )
+    // ),
     // useMaterial3: true,
     colorScheme: const ColorScheme(
       brightness: Brightness.light,
