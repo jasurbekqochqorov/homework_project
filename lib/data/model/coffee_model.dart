@@ -1,6 +1,7 @@
 import 'package:homework12/data/model/enum_type.dart';
 
 class CoffeeModel{
+  final int? id;
   final int categoryId;
   final String name;
   final String image;
@@ -11,6 +12,7 @@ class CoffeeModel{
   final TypeCoffee type;
 
   CoffeeModel({
+    this.id,
     required this.image,
     required this.price,
     required this.description,
@@ -22,6 +24,7 @@ class CoffeeModel{
 });
 
   CoffeeModel copyWith({
+    int? id,
     int? categoryId,
     String? name,
     String? image,

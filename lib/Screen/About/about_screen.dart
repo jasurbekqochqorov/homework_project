@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:homework12/data/local/local_database.dart';
 import 'package:homework12/data/model/coffee_model.dart';
 import 'package:homework12/utils/color/color.dart';
 import 'package:homework12/utils/fonts/fonts.dart';
@@ -13,6 +14,8 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
+  CoffeeModel coffeeModel=CoffeeModel.initialValue;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,7 +58,10 @@ class _AboutScreenState extends State<AboutScreen> {
                             Row(children: [
                               Text(widget.coffeeModel.price.toString()),
                               const Spacer(),
-                              TextButton(onPressed: (){},
+                              TextButton(onPressed: (){
+                                LocalDatabase.insertTask(widget.coffeeModel);
+                                setState(() {});
+                              },
                                   style:TextButton.styleFrom(
                                     backgroundColor: AppColors.c_FFC000,
                                     shape: RoundedRectangleBorder(
