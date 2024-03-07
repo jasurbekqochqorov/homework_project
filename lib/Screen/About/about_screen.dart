@@ -14,8 +14,6 @@ class AboutScreen extends StatefulWidget {
 }
 
 class _AboutScreenState extends State<AboutScreen> {
-  CoffeeModel coffeeModel=CoffeeModel.initialValue;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,67 +25,63 @@ class _AboutScreenState extends State<AboutScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                 Padding(padding: EdgeInsets.symmetric(horizontal:24.w,vertical:24.h),
-                  child:Expanded(
-                    // height:544.h,
-                    // width:double.infinity,
-                    child: Stack(
-                      children: [
-                      Image.asset(widget.coffeeModel.image,height: 544.h,fit: BoxFit.fill,),
-                      Positioned(
-                          bottom: 0,
-                          // left: 0,
-                          child:Container(
-                            decoration: BoxDecoration(
-                              color: AppColors.c_FFFFFF.withOpacity(0.05),
-                              borderRadius: BorderRadius.circular(4.r),
-                            ),
-                        padding: EdgeInsets.symmetric(horizontal: 16.w,vertical:16.h),
-                        child: SizedBox(
-                          width: 350.w,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                  child:Stack(
+                    children: [
+                    Image.asset(widget.coffeeModel.image,height: 544.h,fit: BoxFit.fill,),
+                    Positioned(
+                        bottom: 0,
+                        // left: 0,
+                        child:Container(
+                          decoration: BoxDecoration(
+                            color: AppColors.c_FFFFFF.withOpacity(0.05),
+                            borderRadius: BorderRadius.circular(4.r),
+                          ),
+                      padding: EdgeInsets.symmetric(horizontal: 16.w,vertical:16.h),
+                      child: SizedBox(
+                        width: 350.w,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                          Row(
                             children: [
-                            Row(
-                              children: [
-                              Text(widget.coffeeModel.name,style: Theme.of(context).textTheme.headlineSmall,),
-                              const   Spacer(),
-                              Text(widget.coffeeModel.rate.toString())
-                            ],),
-                            Text(widget.coffeeModel.subtitle),
-                            SizedBox(height:16.h,),
-                            Row(children: [
-                              Text(widget.coffeeModel.price.toString()),
-                              const Spacer(),
-                              TextButton(onPressed: (){
-                                LocalDatabase.insertTask(widget.coffeeModel);
-                                setState(() {});
-                              },
-                                  style:TextButton.styleFrom(
-                                    backgroundColor: AppColors.c_FFC000,
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(4.r)
-                                    )
-                                  ),
-                                  child:const Text('Add to cart'))
-                            ],)
+                            Text(widget.coffeeModel.name,style: Theme.of(context).textTheme.headlineSmall,),
+                            const   Spacer(),
+                            Text(widget.coffeeModel.rate.toString())
                           ],),
-                        ),
-                      )),
-                        Positioned(
-                            top:16.h,left: 16.w,
-                            child:TextButton(onPressed: (){
-                              Navigator.pop(context);
+                          Text(widget.coffeeModel.subtitle),
+                          SizedBox(height:16.h,),
+                          Row(children: [
+                            Text(widget.coffeeModel.price.toString()),
+                            const Spacer(),
+                            TextButton(onPressed: (){
+                              LocalDatabase.insertTask(widget.coffeeModel);
+                              setState(() {});
                             },
-                              style: TextButton.styleFrom(
-                                shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.r)
+                                style:TextButton.styleFrom(
+                                  backgroundColor: AppColors.c_FFC000,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(4.r)
+                                  )
                                 ),
-                                  backgroundColor: AppColors.white.withOpacity(0.3),
-                                  padding: EdgeInsets.symmetric(horizontal:15.w,vertical:15.h)
+                                child:const Text('Add to cart'))
+                          ],)
+                        ],),
+                      ),
+                    )),
+                      Positioned(
+                          top:16.h,left: 16.w,
+                          child:TextButton(onPressed: (){
+                            Navigator.pop(context);
+                          },
+                            style: TextButton.styleFrom(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.r)
                               ),
-                              child:const Icon(Icons.arrow_back,color: AppColors.white,),)),
-                    ],),
-                  )),
+                                backgroundColor: AppColors.white.withOpacity(0.3),
+                                padding: EdgeInsets.symmetric(horizontal:15.w,vertical:15.h)
+                            ),
+                            child:const Icon(Icons.arrow_back,color: AppColors.white,),)),
+                  ],)),
                 Padding(padding: EdgeInsets.symmetric(horizontal:24.w),child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -107,34 +101,34 @@ class _AboutScreenState extends State<AboutScreen> {
                      Container(
                        padding:EdgeInsets.symmetric(vertical:8.h,horizontal:48.w),
                        decoration: BoxDecoration(
-                         color:(widget.coffeeModel.type.name=='S')?AppColors.black:AppColors.white.withOpacity(0.3),
-                         border: Border.all(color: (widget.coffeeModel.type.name=='S')?AppColors.c_D17842:AppColors.white.withOpacity(0.3),width: 1.sp),
+                         color:(widget.coffeeModel.type=='S')?AppColors.black:AppColors.white.withOpacity(0.3),
+                         border: Border.all(color: (widget.coffeeModel.type=='S')?AppColors.c_D17842:AppColors.white.withOpacity(0.3),width: 1.sp),
                          borderRadius: BorderRadius.circular(4.r),
                        ),
                        child:Text('S',style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                         color:(widget.coffeeModel.type.name=='S')?AppColors.c_D17842:AppColors.white
+                         color:(widget.coffeeModel.type=='S')?AppColors.c_D17842:AppColors.white
                        ),),
                      ),
                      Container(
                        padding:EdgeInsets.symmetric(vertical:8.h,horizontal:48.w),
                        decoration: BoxDecoration(
-                         color:(widget.coffeeModel.type.name=='M')?AppColors.black:AppColors.white.withOpacity(0.3),
-                         border: Border.all(color: (widget.coffeeModel.type.name=='M')?AppColors.c_D17842:AppColors.white.withOpacity(0.3),width: 1.sp),
+                         color:(widget.coffeeModel.type=='M')?AppColors.black:AppColors.white.withOpacity(0.3),
+                         border: Border.all(color: (widget.coffeeModel.type=='M')?AppColors.c_D17842:AppColors.white.withOpacity(0.3),width: 1.sp),
                          borderRadius: BorderRadius.circular(4.r),
                        ),
                        child:  Text('M',style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                         color: (widget.coffeeModel.type.name=='M')?AppColors.c_D17842:AppColors.white
+                         color: (widget.coffeeModel.type=='M')?AppColors.c_D17842:AppColors.white
                        ),),
                      ),
                        Container(
                          padding:EdgeInsets.symmetric(vertical:8.h,horizontal:48.w),
                          decoration: BoxDecoration(
-                           color:(widget.coffeeModel.type.name=='L')?AppColors.black:AppColors.white.withOpacity(0.3),
-                           border: Border.all(color: (widget.coffeeModel.type.name=='L')?AppColors.c_D17842:AppColors.white.withOpacity(0.3),width: 1.sp),
+                           color:(widget.coffeeModel.type=='L')?AppColors.black:AppColors.white.withOpacity(0.3),
+                           border: Border.all(color: (widget.coffeeModel.type=='L')?AppColors.c_D17842:AppColors.white.withOpacity(0.3),width: 1.sp),
                            borderRadius: BorderRadius.circular(4.r),
                          ),
                          child:  Text('L',style: Theme.of(context).textTheme.headlineSmall!.copyWith(
-                             color: (widget.coffeeModel.type.name=='L')?AppColors.c_D17842:AppColors.white
+                             color: (widget.coffeeModel.type=='L')?AppColors.c_D17842:AppColors.white
                          ),),
                        ),
                    ],),

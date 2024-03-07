@@ -7,9 +7,9 @@ class CoffeeModel{
   final String image;
   final String description;
   final String subtitle;
-  final double rate;
-  final double price;
-  final TypeCoffee type;
+  final int rate;
+  final int price;
+  final String type;
 
   CoffeeModel({
     this.id,
@@ -30,9 +30,9 @@ class CoffeeModel{
     String? image,
     String? description,
     String? subtitle,
-    double? rate,
-    double? price,
-    TypeCoffee? type,
+    int? rate,
+    int? price,
+    String? type,
   }) {
     return CoffeeModel(
       description: description ?? this.description,
@@ -51,11 +51,11 @@ class CoffeeModel{
       description: json['description'] as String? ?? "",
       name: json['name'] as String? ?? "",
       image: json['image'] as String? ?? "",
-      price: json['price'] as double? ?? 0.0,
+      price: json['price'] as int? ?? 0,
       subtitle: json['subtitle'] as String? ?? "",
       categoryId:json['categoryId'] as int? ?? 0,
-      rate: json['rate'] as double? ?? 0.0,
-      type: json["type"] as TypeCoffee? ?? TypeCoffee.L);
+      rate: json['rate'] as int? ?? 0,
+      type: (json["type"] as String? ?? ''));
   }
 
   Map<String, dynamic> toJson() {
@@ -76,7 +76,7 @@ class CoffeeModel{
     if (description.isEmpty) return false;
     if (name.isEmpty) return false;
     if (image.isEmpty) return false;
-    if (type.name.isEmpty) return false;
+    if (type.isEmpty) return false;
     if (categoryId==0) return false;
     if (price == 0) return false;
     if (rate == 0) return false;
@@ -90,7 +90,25 @@ class CoffeeModel{
     name: "",
     price: 0,
     rate: 0,
-    type:TypeCoffee.L,
+    type:'L',
     categoryId: 0,
   );
 }
+
+
+// TypeCoffee getType(String typeCoffee) {
+//   switch (typeCoffee) {
+//     case "L":
+//       {
+//         return TypeCoffee.L;
+//       }
+//     case "S":
+//       {
+//         return TypeCoffee.S;
+//       }
+//     default:
+//       {
+//         return TypeCoffee.M;
+//       }
+//   }
+// }

@@ -40,10 +40,10 @@ class LocalDatabase{
     const textType = 'TEXT NOT NULL';
     const intType = 'INTEGER DEFAULT 0';
 
-    await db.execute('''CREATE TABLE 'Coffee' (
+    await db.execute('''CREATE TABLE Coffee(
       'id' $idType,
       "subtitle" $textType,
-      'description $textType,
+      'description' $textType,
       'image' $textType,
       'name' $textType,
       'categoryId' $intType,
