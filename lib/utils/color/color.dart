@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 
-class AppColors{
+class   AppColors{
   static const Color c_4157FF=Color(0xFF4157FF);
   static const Color c_3C50E6=Color(0xFF3C50E6);
   static const Color white=Colors.white;
@@ -9,6 +9,8 @@ class AppColors{
   static const Color blue=Colors.blue;
   static const Color c_72090F47=Color(0x72090F47);
   static const Color c_090F47=Color(0xFF090F47);
+  static const Color c_898A8D=Color(0xFF898A8D);
+  static const Color c_151940=Color(0xFF151940);
   static const Color c_F7FBFF=Color(0xFFF7FBFF);
   static const Color c_FF9598=Color(0xFFFF9598);
   static const Color c_FF70A7=Color(0xFFFF70A7);
@@ -28,4 +30,5 @@ class AppColors{
   static const Color c_FCF5E7=Color(0xFFFCF5E7);
   static const Color c_9A9A9A=Color(0xFF9A9A9A);
   static const Color c_FFE1D5=Color(0xFFFFE1D5);
+  static const Color c_F5F6FA=Color(0xFFF5F6FA);
 }
