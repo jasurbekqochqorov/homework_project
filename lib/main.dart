@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:homework12/view_models/calculator_view_model.dart';
+import 'package:provider/provider.dart';
 
 import 'Screen/main_screen.dart';
 
 void main(){
-  runApp(const MyApp());
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(
+          create: (_) =>CalculatorViewModel()),
+      // ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+    ],
+    child: const MyApp(),
+  ));
 
 }
 
