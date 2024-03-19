@@ -31,25 +31,25 @@ class _MainScreenState extends State<MainScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 124.getH(),),
+          SizedBox(height: 154.getH(),),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 30.getW()),
             child: Column(
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text(
-                      context.watch<CalculatorViewModel>().result,
-                      style: AppTextStyle.interSemiBold.copyWith(fontSize: 40),
-                    )
-                  ],
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.end,
+                //   children: [
+                //     Text(
+                //       context.watch<CalculatorViewModel>().result,
+                //       style: AppTextStyle.interSemiBold.copyWith(fontSize: 40),
+                //     )
+                //   ],
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     Text(context.watch<CalculatorViewModel>().k,
-                      style: AppTextStyle.interBold.copyWith(fontSize: 32),
+                      style: AppTextStyle.interBold.copyWith(fontSize: 42),
                     )
                   ],
                 ),
@@ -82,8 +82,8 @@ class _MainScreenState extends State<MainScreen> {
                                 },
                                 child: SvgPicture.asset(
                                   element[index],
-                                  width: 25.getW(),
-                                  height: 25.getH(),
+                                  width: 20.getW(),
+                                  height: 20.getH(),
                                 ),
                               ));
                         })
@@ -99,7 +99,7 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     ...List.generate(amallar.length, (index) {
                       return Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 16.getW(), vertical: 29.getH()),
+                          padding: EdgeInsets.symmetric(horizontal: 14.getW(), vertical: 29.getH()),
                           child: TextButton(
                             onPressed: () {
                               context.read<CalculatorViewModel>().operation(amallar[index]);

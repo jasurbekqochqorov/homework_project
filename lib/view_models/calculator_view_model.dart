@@ -81,8 +81,9 @@ class CalculatorViewModel extends ChangeNotifier{
         result=(a*b).toInt().toString();
       }
       else{
-        result='${(a%b).toInt()}';
+        result='${(a*b/100).toInt()}';
       }
+      k=result;
       notifyListeners();
     }
   }

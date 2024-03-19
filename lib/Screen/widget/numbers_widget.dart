@@ -19,9 +19,9 @@ class _NumberWidgetState extends State<NumberWidget> {
     return Row(children: [...List.generate(3, (index){
       return Padding(padding: EdgeInsets.symmetric(horizontal:16.getW(),vertical:30.getH()),
           child:TextButton(onPressed: (){
-            context.read<CalculatorViewModel>().number("${index+7}");
+            context.read<CalculatorViewModel>().number("${index+widget.number}");
           },
-            child:Text("${index+7}",style: AppTextStyle.interBold.copyWith(
+            child:Text("${index+widget.number}",style: AppTextStyle.interBold.copyWith(
                 color: AppColors.black,fontSize:24.getW()
             ),),));
     })],);
