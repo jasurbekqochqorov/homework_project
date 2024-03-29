@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 class CalculatorViewModel extends ChangeNotifier{
 
   String k='';
+  String m='';
   double a=0;
   double b=0;
   String result='';
@@ -14,7 +15,6 @@ class CalculatorViewModel extends ChangeNotifier{
     k=k+number;
     notifyListeners();
   }
-
   remove(int remover)async{
     if(remover==0){
       k='';
@@ -39,10 +39,14 @@ class CalculatorViewModel extends ChangeNotifier{
       k=k+operation;
       op=operation;
       notifyListeners();
+
     }
     else if(operation=='x'){
       if(result.isNotEmpty){
         k=result;
+      }
+      else{
+        k=m;
       }
       k=k+operation;
       op=operation;
@@ -55,6 +59,7 @@ class CalculatorViewModel extends ChangeNotifier{
       op=operation;
       k=k+operation;
       notifyListeners();
+
     }
     else if(operation=='+'){
       if(result.isNotEmpty){
