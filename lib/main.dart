@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:homework12/Screen/main_screen.dart';
+import 'package:homework12/screens/splash/splash_screen.dart';
+import 'package:homework12/view_models/addressess_view_model.dart';
+import 'package:homework12/view_models/maps_view_model.dart';
+import 'package:provider/provider.dart';
 
-void main(){
-  runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
 
+  runApp(MultiProvider(
+    providers: [
+      ChangeNotifierProvider(create: (_) => MapsViewModel()),
+      ChangeNotifierProvider(create: (_) => AddressesViewModel()),
+    ],
+    child: MyApp(),
+  ));
 }
-
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,8 +22,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: MainScreen(),
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(useMaterial3: false),
+      home: const SplashScreen(),
     );
   }
 }
