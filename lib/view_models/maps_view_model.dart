@@ -24,7 +24,7 @@ class MapsViewModel extends ChangeNotifier {
     );
 
     currentCameraPosition = initialCameraPosition!;
-    addNewMarker();
+    // addNewMarker();
   }
 
   changeMapType(MapType newMapType) {
@@ -48,33 +48,33 @@ class MapsViewModel extends ChangeNotifier {
     currentCameraPosition = cameraPosition;
   }
 
-  addNewMarker() async {
-    markers = {};
-    Uint8List markerImage = await getBytesFromAsset(
-      AppImages.courier,
-      150,
-    );
-    markers.add(
-      Marker(
-        position: currentCameraPosition.target,
-        infoWindow: const InfoWindow(title: "Toshkent", snippet: "Chilonzor"),
-        //BitmapDescriptor.defaultMarker,
-        icon: BitmapDescriptor.fromBytes(markerImage),
-        markerId: MarkerId(DateTime.now().toString()),
-      ),
-    );
-    notifyListeners();
-  }
-
-  static Future<Uint8List> getBytesFromAsset(String path, int width) async {
-    ByteData data = await rootBundle.load(path);
-    ui.Codec codec = await ui.instantiateImageCodec(
-      data.buffer.asUint8List(),
-      targetWidth: width,
-    );
-    ui.FrameInfo fi = await codec.getNextFrame();
-    return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
-        .buffer
-        .asUint8List();
-  }
+  // addNewMarker() async {
+  //   markers = {};
+  //   Uint8List markerImage = await getBytesFromAsset(
+  //     AppImages.courier,
+  //     150,
+  //   );
+  //   markers.add(
+  //     Marker(
+  //       position: currentCameraPosition.target,
+  //       infoWindow: const InfoWindow(title: "Toshkent", snippet: "Chilonzor"),
+  //       //BitmapDescriptor.defaultMarker,
+  //       icon: BitmapDescriptor.fromBytes(markerImage),
+  //       markerId: MarkerId(DateTime.now().toString()),
+  //     ),
+  //   );
+  //   notifyListeners();
+  // }
+  //
+  // static Future<Uint8List> getBytesFromAsset(String path, int width) async {
+  //   ByteData data = await rootBundle.load(path);
+  //   ui.Codec codec = await ui.instantiateImageCodec(
+  //     data.buffer.asUint8List(),
+  //     targetWidth: width,
+  //   );
+  //   ui.FrameInfo fi = await codec.getNextFrame();
+  //   return (await fi.image.toByteData(format: ui.ImageByteFormat.png))!
+  //       .buffer
+  //       .asUint8List();
+  // }
 }

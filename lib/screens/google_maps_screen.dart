@@ -4,6 +4,7 @@ import 'package:homework12/screens/widgets/map_type_item.dart';
 import 'package:provider/provider.dart';
 
 import '../utils/images/app_images.dart';
+import '../view_models/location_view_model.dart';
 import '../view_models/maps_view_model.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
@@ -16,6 +17,17 @@ class GoogleMapsScreen extends StatefulWidget {
 }
 
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
+  init(){
+    LatLng? latLng = context.read<LocationViewModel>().latLng;
+    Provider.of<MapsViewModel>(context, listen: false)
+        .setLatInitialLong(latLng!);
+  }
+  @override
+  void initState() {
+    init();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     CameraPosition? cameraPosition;
@@ -29,16 +41,6 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
             children: [
               GoogleMap(
                 markers: viewModel.markers,
-                onCameraIdle: () {
-                  if (cameraPosition != null) {
-                    context
-                        .read<MapsViewModel>()
-                        .changeCurrentLocation(cameraPosition!);
-                     context.read<MapsViewModel>().addNewMarker();
-                  }
-                  // ScaffoldMessenger.of(context)
-                  //     .showSnackBar(const SnackBar(content: Text("IDLE")));
-                },
                 onCameraMove: (CameraPosition currentCameraPosition) {
                   cameraPosition = currentCameraPosition;
                   debugPrint(

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homework12/screens/splash_screen.dart';
+import 'package:homework12/screens/google_maps_screen.dart';
 import 'package:homework12/view_models/location_view_model.dart';
 import 'package:homework12/view_models/maps_view_model.dart';
 import 'package:provider/provider.dart';
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(useMaterial3: false),
-      home: const SplashScreen(),
+      home: const GoogleMapsScreen(),
     );
   }
 }
