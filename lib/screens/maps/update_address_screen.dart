@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
-
 import '../../data/models/place_category.dart';
 import '../../data/models/place_model.dart';
 import '../../utils/images/app_images.dart';
@@ -101,8 +100,8 @@ class _UpdateAddressScreenState extends State<UpdateAddressScreen> {
                 context: context,
                 placeModel: (newAddressDetails) {
                   PlaceModel place = newAddressDetails;
-                  place.latLng = cameraPosition!.target;
-                  place.placeCategory = PlaceCategory.work;
+                  // place.latLng = cameraPosition!.target;
+                  // place.placeCategory = PlaceCategory.work;
                   context.read<AddressesViewModel>().addNewAddress(place);
                   Navigator.pop(context);
                 },

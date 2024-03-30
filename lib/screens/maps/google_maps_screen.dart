@@ -1,14 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:homework12/data/models/place_category.dart';
+import 'package:homework12/utils/colors/app_colors.dart';
 import 'package:provider/provider.dart';
-
-import '../../data/models/place_category.dart';
 import '../../data/models/place_model.dart';
 import '../../utils/images/app_images.dart';
 import '../../utils/styles/app_text_style.dart';
 import '../../view_models/addressess_view_model.dart';
 import '../../view_models/maps_view_model.dart';
-import '../widgets/map_type_item.dart';
 import 'dialogs/addressDetailDialog.dart';
 
 class GoogleMapsScreen extends StatefulWidget {
@@ -21,6 +21,9 @@ class GoogleMapsScreen extends StatefulWidget {
 }
 
 class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
+  PlaceModel placeModels=PlaceModel.initialValue;
+  PlaceCategory category=PlaceCategory.home;
+  int k=0;
   @override
   Widget build(BuildContext context) {
     CameraPosition? cameraPosition;
@@ -69,41 +72,126 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                     fontSize: 24,
                   ),
                 ),
-              )
+              ),
+              Positioned(
+                  bottom: 60,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal:24),
+                    child: Column(children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          TextButton(onPressed:(){
+                            category=PlaceCategory.home;
+                            k=1;
+                            setState(() {});
+                          },
+                              style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(horizontal:10,vertical:5),
+                                  backgroundColor:(k==1)? Colors.amberAccent:AppColors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)
+                                  )
+                              ),
+                              child:Row(children: [
+                                Image.asset(AppImages.home,width: 40,height: 40,),
+                                const SizedBox(width:3,),
+                                Text("home",style: AppTextStyle.interRegular.copyWith(
+                                    color:(k==1)?AppColors.white:AppColors.black.withOpacity(0.4),fontSize: 14
+                                ),),
+                              ],)),
+                          const SizedBox(width: 20,),
+                          TextButton(onPressed:(){
+                            category=PlaceCategory.work;
+                            k=2;
+                            setState(() {});
+                          },
+                              style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(horizontal:10,vertical:5),
+                                  backgroundColor:(k==2)? Colors.amberAccent:AppColors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)
+                                  )
+                              ),
+                              child:Row(children: [
+                                Image.asset(AppImages.work,width: 40,height: 40,),
+                                const SizedBox(width:3,),
+                                Text("work",style: AppTextStyle.interRegular.copyWith(
+                                    color:(k==2)?AppColors.white:AppColors.black.withOpacity(0.4),fontSize: 14
+                                ),),
+                              ],)),
+                          const SizedBox(width: 20,),
+                          TextButton(onPressed:(){
+                            category=PlaceCategory.other;
+                            k=3;
+                            setState(() {});
+                          },
+                              style: TextButton.styleFrom(
+                                  padding: const EdgeInsets.symmetric(horizontal:10,vertical:5),
+                                  backgroundColor: (k==3)? Colors.amberAccent:AppColors.white,
+                                  shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16)
+                                  )
+                              ),
+                              child:Row(children: [
+                                Image.asset(AppImages.other,width: 40,height: 40,),
+                                const SizedBox(width:3,),
+                                Text("friends",style: AppTextStyle.interRegular.copyWith(
+                                    color: (k==3)?Colors.white:AppColors.black.withOpacity(0.4),fontSize: 14
+                                ),),
+                              ],))
+                        ],),
+                      const SizedBox(height:30,),
+                      SizedBox(
+                        child: TextButton(onPressed: (){
+                          addressDetailDialog(
+                            context: context,
+                            placeModel: (newAddressDetails) {
+                               placeModels = newAddressDetails;
+                                 placeModels.copyWith(
+                                   latLng: viewModel.currentCameraPosition.target,
+                                 );
+
+                              placeModels.copyWith(
+                                placeCategory:category,
+                              );
+                              context.read<AddressesViewModel>().addNewAddress(placeModels);
+                              Navigator.pop(context);
+                            },
+                          );
+                        },
+                            style: TextButton.styleFrom(
+                              padding: const EdgeInsets.symmetric(horizontal: 130,vertical:10),
+                              backgroundColor:Colors.amberAccent,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16)
+                              )
+                            ),
+                            child:Text('Save',style: AppTextStyle.interMedium.copyWith(
+                              color: AppColors.white,fontSize:24
+                            ),)),
+                      )
+                    ],),
+                  ))
             ],
           );
         },
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Row(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          FloatingActionButton(
-            onPressed: () {
-              context.read<MapsViewModel>().moveToInitialPosition();
-            },
-            child: const Icon(Icons.gps_fixed),
-          ),
-          const SizedBox(width: 20),
-          FloatingActionButton(
-            onPressed: () {
-              addressDetailDialog(
-                context: context,
-                placeModel: (newAddressDetails) {
-                  PlaceModel place = newAddressDetails;
-                  place.latLng = cameraPosition!.target;
-                  place.placeCategory = PlaceCategory.work;
-                  context.read<AddressesViewModel>().addNewAddress(place);
-                  Navigator.pop(context);
-                },
-              );
-            },
-            child: const Icon(Icons.place),
-          ),
-          const SizedBox(width: 20),
-          const MapTypeItem(),
-        ],
-      ),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.miniCenterFloat,
+      // floatingActionButton: Row(
+      //   mainAxisSize: MainAxisSize.min,
+      //   children: [
+      //     FloatingActionButton(
+      //       onPressed: () {
+      //         context.read<MapsViewModel>().moveToInitialPosition();
+      //       },
+      //       child:Icon(Icons.my_location_sharp),
+      //     ),
+      //     const SizedBox(width: 20),
+      //     const SizedBox(width: 20),
+      //     const MapTypeItem(),
+      //   ],
+      // ),
     );
   }
 }

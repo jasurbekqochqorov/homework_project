@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:homework12/utils/images/app_images.dart';
+import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
 
 import '../../utils/colors/app_colors.dart';
@@ -14,7 +16,7 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   _init() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 4));
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
@@ -36,14 +38,8 @@ class _SplashScreenState extends State<SplashScreen> {
     context.read<MapsViewModel>();
     return Scaffold(
       backgroundColor: AppColors.white,
-      appBar: AppBar(
-        title: const Text("Deafult"),
-      ),
       body: Center(
-        child: TextButton(
-          onPressed: () {},
-          child: const Text("LoTTIE QO"),
-        ),
+        child:Lottie.asset(AppImages.test),
       ),
     );
   }
