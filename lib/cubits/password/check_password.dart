@@ -1,53 +1,40 @@
-
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:homework12/screens/countries/currencies_screen.dart';
+import 'package:homework12/utils/colors/app_colors.dart';
+import 'package:homework12/utils/styles/app_text_style.dart';
 import '../../data/local/storage_repository.dart';
-import '../../screens/payme/home_screen.dart';
-import '../../screens/payme/register/comfirmation_password_screen.dart';
-import '../../utils/colors/app_colors.dart';
-import '../../utils/styles/app_text_style.dart';
-
-class CheckPassword extends Cubit<String>{
-  CheckPassword():super("");
 
 
-  enterPassword(String value){
-    emit(value);
-  }
+class CheckCubit extends Cubit<String> {
+  CheckCubit() : super("");
 
-  void savePassword(BuildContext context,String password){
-    if(password.isNotEmpty && password.length==4 ){
-      StorageRepository.setString(key: 'password', value:password);
-      Navigator.push(context,MaterialPageRoute(builder: (context){
-        return const ConfirmationPasswordScreen();
-      }));
-    }
-    else{
-      ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-              backgroundColor:Colors.red,
-              content:Text('Password not entered or error',style: AppTextStyle.interMedium.copyWith(
-                  color: AppColors.white,fontSize:20
-              ),)));
+  void createPassword(String pinCode) {
+    if(StorageRepository.getString(key: 'pin_code').isEmpty){
+      StorageRepository.setString(
+        key: "pin_code",
+        value: pinCode,
+      );
     }
   }
 
-  void confirmPassword(BuildContext context,String password){
-    if(StorageRepository.getString(key: 'password')==password)
-    {
-      ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-              backgroundColor:Colors.green,
-              content: Text('Password saved')));
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context){
-        return const HomeScreen();
-      }));
+  void toCheckPinCode(String pinCode, BuildContext context) {
+    if (StorageRepository.getString(key: "pin_code") == pinCode) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CurrenciesScreen(),
+        ),
+      );
     }
-    else{
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: SnackBar(content: Text('Password is not correct'),)));
+    else if(StorageRepository.getString(key: 'pin_code').isNotEmpty){
+      ScaffoldMessenger.of(context).showSnackBar(
+         SnackBar(
+            backgroundColor:Colors.red,
+            content: Text('Password is not correct',style: AppTextStyle.interMedium.copyWith(
+              color:AppColors.white,fontSize:22
+            ),))
+      );
     }
   }
 }
