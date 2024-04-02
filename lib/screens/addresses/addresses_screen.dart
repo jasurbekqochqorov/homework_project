@@ -1,9 +1,10 @@
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:homework12/data/local/local_database.dart';
-import 'package:homework12/data/models/place_model.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
+import 'package:homework12/utils/images/app_images.dart';
 import 'package:homework12/utils/styles/app_text_style.dart';
 import 'package:provider/provider.dart';
 import '../../view_models/addressess_view_model.dart';
@@ -44,7 +45,7 @@ class _AddressesScreenState extends State<AddressesScreen> {
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return UpdateAddressScreen(
+                              return UpdateScreen(
                                 placeModel: myAddress,
                               );
                             },
@@ -52,12 +53,74 @@ class _AddressesScreenState extends State<AddressesScreen> {
                         );
                       },
                       child: Container(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 20, vertical: 8),
                         margin: const EdgeInsets.all(12),
-                        height: 100,
-                        width: double.infinity,
-                      child: Text(myAddress.placeName,style: AppTextStyle.interMedium.copyWith(
-                        color: AppColors.black,fontSize:24
-                      ),),),
+                        height: 80,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: const [
+                            BoxShadow(
+                              offset: Offset(3, 3),
+                              color: Colors.black12,
+                              spreadRadius: 0,
+                              blurRadius: 10,
+                            )
+                          ],
+                        ),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Image.asset(getImage(myAddress.placeCategory),width: 50,height: 50,),
+                                const SizedBox(width: 10),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                  Text(myAddress.placeCategory,style: AppTextStyle.interBold.copyWith(
+                                    color: AppColors.black,fontSize:16
+                                  ),),
+                                  const SizedBox(height:6,),
+                                  SizedBox(
+                                    width:200,
+                                    child: Text(
+                                      maxLines: 2,
+                                      myAddress.placeName,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: AppTextStyle.interMedium.copyWith(
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w300,
+                                      ),
+                                    ),
+                                  ),
+                                ],),
+                                Spacer(),
+                                IconButton(onPressed: (){
+                                  showDialog(context: context, builder:(context){
+                                    return AlertDialog(
+                                     content: Text("Are you sure",style: AppTextStyle.interBold.copyWith(
+                                       color: AppColors.black,fontSize:24
+                                     ),),
+                                     actions: [
+                                       TextButton(onPressed: (){
+                                         context.read<AddressesViewModel>().deleteAddress(myAddress);
+                                         Navigator.pop(context);
+                                       },child: const Text('ok'),),
+                                       TextButton(onPressed: (){
+                                         Navigator.pop(context);
+                                       },child: const Text('cancel'),),
+                                     ],
+                                    );
+                                  });
+                                }, icon: const Icon(Icons.delete))
+                              ],
+                            ),
+
+                          ],
+                        ),
+
+                      ),
                     );
                   })
                 ]);
@@ -92,4 +155,21 @@ class _AddressesScreenState extends State<AddressesScreen> {
       ),
     );
   }
+}
+
+String getImage(String name){
+  switch(name){
+    case "home":
+      {
+        return AppImages.home;
+      }
+
+    case "work":{
+      return AppImages.work;
+    }
+    default:{
+      return AppImages.other;
+    }
+  }
+  return "";
 }

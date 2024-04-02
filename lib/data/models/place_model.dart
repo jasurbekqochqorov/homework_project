@@ -1,109 +1,92 @@
-import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:homework12/data/models/place_category.dart';
+
+import '../local/local_database.dart';
 
 class PlaceModel {
-  PlaceModel({
+  PlaceModel(
+      {
+        this.id,
     required this.placeCategory,
-    required this.latLng,
+    required this.lat,
+    required this.long,
     required this.placeName,
     required this.entrance,
     required this.flatNumber,
     required this.orientAddress,
     required this.stage,
-    this.id,
+    this.docId,
   });
-
   final int? id;
-   final LatLng latLng;
+  final String? docId;
+  final double lat;
+  final double long;
   final String placeName;
- final PlaceCategory placeCategory;
+  final String placeCategory;
   final String entrance;
   final String stage;
   final String flatNumber;
   final String orientAddress;
 
+  factory PlaceModel.fromJson(Map<String, dynamic> json) {
+    return PlaceModel(
+      id: json[PlaceModelConstants.id] as int? ?? 0,
+      docId: json['docId'] as String?,
+      placeCategory: json[PlaceModelConstants.placeCategory] as String,
+      lat: double.parse(json[PlaceModelConstants.lat] as String? ?? "0.0"),
+      long: double.parse(json[PlaceModelConstants.long] as String? ?? "0.0"),
+      placeName: json[PlaceModelConstants.placeName] as String? ?? '',
+      entrance: json[PlaceModelConstants.entrance] as String? ?? '',
+      stage: json[PlaceModelConstants.stage] as String? ?? '',
+      flatNumber: json[PlaceModelConstants.flatNumber] as String? ?? '',
+      orientAddress: json[PlaceModelConstants.orientAddress] as String? ?? '',
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    PlaceModelConstants.placeCategory: placeCategory,
+    PlaceModelConstants.lat: lat,
+    PlaceModelConstants.long: long,
+    PlaceModelConstants.placeName: placeName,
+    PlaceModelConstants.entrance: entrance,
+    PlaceModelConstants.stage: stage,
+    PlaceModelConstants.flatNumber: flatNumber,
+    PlaceModelConstants.orientAddress: orientAddress,
+  };
+
   PlaceModel copyWith({
     int? id,
+    String? docId,
+    String? placeCategory,
+    double? lat,
+    double? long,
     String? placeName,
     String? entrance,
     String? stage,
-    LatLng? latLng,
-    PlaceCategory? placeCategory,
     String? flatNumber,
-    String? orientAddress
+    String? orientAddress,
   }) {
     return PlaceModel(
+      docId: docId ?? this.docId,
+      placeCategory: placeCategory ?? this.placeCategory,
+      lat: lat ?? this.lat,
+      long: long ?? this.long,
       placeName: placeName ?? this.placeName,
       entrance: entrance ?? this.entrance,
-      stage:  stage ?? this.stage,
-      latLng: latLng ?? this.latLng,
-      placeCategory: placeCategory ?? this.placeCategory,
-      orientAddress: orientAddress ?? this.orientAddress,
+      stage: stage ?? this.stage,
       flatNumber: flatNumber ?? this.flatNumber,
+      orientAddress: orientAddress ?? this.orientAddress,
     );
   }
-
-  factory PlaceModel.fromJson(Map<String, dynamic> json) {
-    return PlaceModel(
-      placeName: json['place_name'] as String? ?? "",
-      entrance: json["entrance"] as String? ?? "",
-      placeCategory: getStatus(json['place_category'] as String? ?? ""),
-      stage: json["stage"] as String? ?? "",
-      flatNumber:json['flat_number'] as String? ?? "",
-      orientAddress:json['orient_address'] as String? ?? "",
-      latLng: json['lat_lng'] as LatLng? ?? const LatLng(0,0),
-      id: json["_id"] as int? ?? 0,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      "place_name":placeName,
-      "entrance": entrance,
-      "place_category":placeCategory.name,
-      "stage":stage,
-      "flat_number":flatNumber,
-      "orient_address":orientAddress,
-      "lat":latLng.latitude.toInt(),
-      "lng":latLng.longitude.toInt()
-    };
-  }
-
-  bool canAddTaskToDatabase() {
-    if (placeName.isEmpty) return false;
-    if (placeCategory.name.isEmpty) return false;
-    if (stage.isEmpty) return false;
-    if (flatNumber.isEmpty) return false;
-    if (entrance.isEmpty) return false;
-    if (orientAddress.isEmpty) return false;
-    return true;
-  }
-
   static PlaceModel initialValue = PlaceModel(
-    placeName: "",
-    entrance: "",
-    placeCategory: PlaceCategory.home,
-    latLng:const LatLng(0,0),
-    flatNumber: "",
-    stage: "",
-    orientAddress: ""
+      placeName: "",
+      entrance: "",
+      placeCategory:"work",
+      lat:0.0,
+      long: 0.0,
+      flatNumber: "",
+      stage: "",
+      orientAddress: ""
   );
 }
 
-PlaceCategory getStatus(String statusText) {
-  switch (statusText) {
-    case "other":
-      {
-        return PlaceCategory.other;
-      }
-    case "work":
-      {
-        return PlaceCategory.work;
-      }
-    default:
-      {
-        return PlaceCategory.home;
-      }
-  }
 
-}
+

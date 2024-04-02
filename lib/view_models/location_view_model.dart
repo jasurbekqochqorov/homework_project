@@ -34,8 +34,8 @@ class LocationViewModel extends ChangeNotifier {
 
     locationData = await location.getLocation();
     latLng = LatLng(locationData.latitude!, locationData.longitude!);
-    debugPrint("LONGITUDE:${locationData.longitude}");
-    debugPrint("LATITUDE:${locationData.latitude}");
+    debugPrint("LONGITUDED:${locationData.longitude}");
+    debugPrint("LATITUDED:${locationData.latitude}");
     debugPrint("SPEED:${locationData.speed}");
     debugPrint("ALTITUDE:${locationData.altitude}");
 

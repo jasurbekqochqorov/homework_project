@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:homework12/data/models/place_category.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
 import 'package:homework12/utils/styles/app_text_style.dart';
 import 'package:homework12/view_models/maps_view_model.dart';
 import 'package:provider/provider.dart';
-import '../../../data/models/place_category.dart';
 import '../../../data/models/place_model.dart';
 
 addressDetailDialog({
@@ -87,8 +86,9 @@ addressDetailDialog({
                           entrance: entranceController.text,
                           flatNumber:flatNumberController.text,
                           orientAddress:orientAddressController.text,
-                          placeCategory: PlaceCategory.home,
-                          latLng:const LatLng(0,0),
+                          placeCategory:PlaceCategory.home.name,
+                          lat:0.0,
+                          long: 0.0,
                           placeName:addressController.text.toString(),
                           stage: stageController.text,
                         );
@@ -97,7 +97,6 @@ addressDetailDialog({
                       },
                       style: TextButton.styleFrom(
                         backgroundColor:Colors.amberAccent,
-
                       ),
                       child:  Text("SAVE PLACE",style: AppTextStyle.interMedium.copyWith(
                         color: AppColors.white,fontSize:18

@@ -86,10 +86,10 @@ class MapsViewModel extends ChangeNotifier {
 
     markers.add(
       Marker(
-        position: placeModel.latLng,
+        position: LatLng(placeModel.lat,placeModel.long),
         infoWindow: InfoWindow(
           title: placeModel.placeName,
-          snippet: placeModel.placeCategory.name,
+          snippet: placeModel.placeCategory,
         ),
         //BitmapDescriptor.defaultMarker,
         icon: BitmapDescriptor.fromBytes(markerImage!),
@@ -114,6 +114,11 @@ class MapsViewModel extends ChangeNotifier {
   savePlace(PlaceModel placeModel) {
     myAddresses.add(placeModel);
     addNewMarker(placeModel);
+    placeModel.copyWith(
+      lat: currentCameraPosition.target.latitude,
+      long: currentCameraPosition.target.longitude,
+    );
+
   }
 
   Future<void> getUserLocation() async {
@@ -141,13 +146,13 @@ class MapsViewModel extends ChangeNotifier {
     locationData = await location.getLocation();
     setLatInitialLong(LatLng(locationData.latitude!, locationData.longitude!));
 
-    debugPrint("LONGITUDE:${locationData.longitude}");
-    debugPrint("LATITUDE:${locationData.latitude}");
-    debugPrint("SPEED:${locationData.speed}");
+    debugPrint("LONGITUDEE:${locationData.longitude}");
+    debugPrint("LATITUDEE:${locationData.latitude}");
+    debugPrint("SPEEDE:${locationData.speed}");
     debugPrint("ALTITUDE:${locationData.altitude}");
 
-    //listenCurrentLocation();
+    // listenCurrentLocation();
 
-    //location.enableBackgroundMode(enable: true);
+    location.enableBackgroundMode(enable: true);
   }
 }

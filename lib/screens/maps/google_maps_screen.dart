@@ -148,14 +148,16 @@ class _GoogleMapsScreenState extends State<GoogleMapsScreen> {
                             context: context,
                             placeModel: (newAddressDetails) {
                                placeModels = newAddressDetails;
-                                 placeModels.copyWith(
-                                   latLng: viewModel.currentCameraPosition.target,
-                                 );
-
-                              placeModels.copyWith(
-                                placeCategory:category,
+                               debugPrint("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL"+newAddressDetails.long.toString());
+                               placeModels= placeModels.copyWith(
+                                placeCategory:category.name,
+                                lat:viewModel.currentCameraPosition.target.latitude,
+                                long:viewModel.currentCameraPosition.target.longitude,
                               );
+                              debugPrint(placeModels.placeCategory);
+                               debugPrint("LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL ${viewModel.currentCameraPosition.target.longitude.toString()}");
                               context.read<AddressesViewModel>().addNewAddress(placeModels);
+                               context.read<AddressesViewModel>().init();
                               Navigator.pop(context);
                             },
                           );
