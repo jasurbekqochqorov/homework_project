@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
 import '../../../cubits/password/check_password.dart';
 
 class PinCodeWidget extends StatefulWidget {
@@ -151,8 +151,8 @@ class _PinCodeWidgetState extends State<PinCodeWidget> {
                 ],
               ),
             ),
-            SizedBox(height: 20,),
-            Container(
+            const SizedBox(height: 20,),
+             SizedBox(
               width: double.infinity,
               child: TextButton(
                 onPressed: () {
