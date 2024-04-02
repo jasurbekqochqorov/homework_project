@@ -1,10 +1,6 @@
 import 'dart:async';
-import 'dart:ui' as ui;
 import 'package:flutter/foundation.dart';
-import 'package:flutter/services.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
-import '../utils/images/app_images.dart';
 
 class MapsViewModel extends ChangeNotifier {
   final Completer<GoogleMapController> controller =
