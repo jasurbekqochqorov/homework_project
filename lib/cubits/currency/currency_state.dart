@@ -1,27 +1,18 @@
-
 import 'package:homework12/data/models/country_model.dart';
 
-import '../../data/models/forms_status.dart';
+abstract class CurrencyState {}
 
-class CurrencyState {
-  final FormsStatus formsStatus;
-  final List<CountryModel> currencies;
-  final String statusText;
+class CurrencyInitialState extends CurrencyState {}
 
-  CurrencyState({
-    required this.formsStatus,
-    required this.statusText,
-    required this.currencies,
-  });
+class CurrencyLoadingState extends CurrencyState {}
 
-  CurrencyState copyWith({
-    FormsStatus? formsStatus,
-    List<CountryModel>? currencies,
-    String? statusText,
-  }) =>
-      CurrencyState(
-        formsStatus: formsStatus ?? this.formsStatus,
-        currencies: currencies ?? this.currencies,
-        statusText: statusText ?? this.statusText,
-      );
+class CurrencySuccessState extends CurrencyState {
+  CurrencySuccessState({required this.currencies});
+  final List<IncomesModel> currencies;
+}
+
+class CurrencyErrorState extends CurrencyState {
+  CurrencyErrorState({required this.errorText});
+
+  final String errorText;
 }

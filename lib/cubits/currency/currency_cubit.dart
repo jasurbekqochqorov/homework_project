@@ -1,38 +1,23 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homework12/data/api_provider.dart';
 import 'package:homework12/data/models/country_model.dart';
-
-import '../../data/api_provider.dart';
-import '../../data/models/forms_status.dart';
 import '../../data/models/network_response.dart';
 import 'currency_state.dart';
 
-class CurrenciesCubit extends Cubit<CurrencyState> {
-  CurrenciesCubit()
-      : super(
-          CurrencyState(
-            formsStatus: FormsStatus.pure,
-            statusText: "",
-            currencies: [],
-          ),
-        ) {
-    //fetchCurrencies();
-  }
+class CurrencyCubit extends Cubit<CurrencyState> {
+  CurrencyCubit() : super(CurrencyInitialState());
 
-  fetchCurrencies() async {
-    emit(state.copyWith(formsStatus: FormsStatus.loading));
+  Future<void> fetchCurrencies() async {
+    emit(CurrencyLoadingState());
     NetworkResponse response = await ApiProvider.getCurrencies();
     if (response.errorText.isEmpty) {
-      emit(
-        state.copyWith(
-          currencies: response.data as List<CountryModel>,
-          formsStatus: FormsStatus.success,
-        ),
-      );
+      emit(CurrencySuccessState(
+          currencies: response.data as List<IncomesModel>));
     } else {
-      emit(state.copyWith(
-        statusText: response.errorText,
-        formsStatus: FormsStatus.error,
-      ));
+      emit(CurrencyErrorState(errorText: response.errorText));
     }
   }
+
+
 }

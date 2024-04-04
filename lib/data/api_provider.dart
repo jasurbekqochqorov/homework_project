@@ -8,12 +8,11 @@ class ApiProvider {
   static Future<NetworkResponse> getCurrencies() async {
     try {
       http.Response response = await http
-          .get(Uri.parse("https://all-countries.free.mockoapp.net/countries"));
-
+          .get(Uri.parse("https://banking-api.free.mockoapp.net/transactions-incomes"));
       if (response.statusCode == HttpStatus.ok) {
         return NetworkResponse(
-          data: ((jsonDecode(response.body)['data']['countries'] as List?))
-                  ?.map((e) => CountryModel.fromJson(e))
+          data: ((jsonDecode(response.body) as List?))
+                  ?.map((e) => IncomesModel.fromJson(e))
                   .toList() ??
               [],
         );
