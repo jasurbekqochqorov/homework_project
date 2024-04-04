@@ -33,73 +33,71 @@ class _AddNotesScreenState extends State<UpdateNotesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black.withOpacity(0.1),
-      appBar: AppBar(
-        leading: IconButton(onPressed: (){
-          Navigator.pop(context);
-        },
-          style: IconButton.styleFrom(
-            backgroundColor: AppColors.white.withOpacity(0.4),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(8),
-            )
-          ),
-        icon: const Icon(Icons.arrow_back_ios_new,color: AppColors.white,),),
-        backgroundColor: AppColors.black.withOpacity(0.1),
-        actions: [
-          IconButton(onPressed: (){
-            showDialog(context: context, builder:(context){
-              return AlertDialog(
-                content: Text('Do you want to change,Are you sure',style: AppTextStyle.interRegular.copyWith(
-                  color: AppColors.black,fontSize:18
-                ),),
-                actions: [
-                  TextButton(onPressed: (){
-                    Navigator.pop(context);
-                  },child: const Text('CANCEL'),),
-                  TextButton(onPressed: (){
-                    if(titleController.text.isNotEmpty && subTitleController.text.isNotEmpty){
-                      NoteModel noteModel=NoteModel(
-                          title: titleController.text,
-                          subtitle:subTitleController.text,
-                          color:"Colors.blue");
-                      context.read<NoteBloc>().add(UpdateNoteEvent(noteId:widget.noteModel!.id!, noteModel: noteModel));
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            backgroundColor: Colors.green,
-                            content: Text('Success'))
-                      );
-                      Navigator.pop(context);
-                      Navigator.pop(context);
-                    }
-                    else{
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                            backgroundColor: Colors.red,
-                            content: Text('Error')),
-                      );
-                        Navigator.pop(context);
-                    }
-                    Navigator.pop(context);
-                  },child: const Text('OK'),),
-                ],
-                // backgroundColor: AppColors.white,
-              );
-            });
-          },
-            style: IconButton.styleFrom(
-              backgroundColor: AppColors.white.withOpacity(0.4),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8)
-              )
-            ),
-            icon:const Icon(Icons.save),color: AppColors.white,)
-        ],
-      ),
       body:  SingleChildScrollView(
         child: Padding(
           padding:const EdgeInsets.symmetric(horizontal:24,vertical:10),
           child: Column(children: [
-            const SizedBox(height:10,),
+            const SizedBox(height:60,),
+            Row(children: [
+              IconButton(onPressed: (){
+                Navigator.pop(context);
+              },
+                style: IconButton.styleFrom(
+                    backgroundColor: AppColors.white.withOpacity(0.4),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    )
+                ),
+                icon: const Icon(Icons.arrow_back_ios_new,color: AppColors.white,),),
+              const Spacer(),
+              IconButton(onPressed: (){
+                showDialog(context: context, builder:(context){
+                  return AlertDialog(
+                    content: Text('Do you want to change,Are you sure',style: AppTextStyle.interRegular.copyWith(
+                        color: AppColors.black,fontSize:18
+                    ),),
+                    actions: [
+                      TextButton(onPressed: (){
+                        Navigator.pop(context);
+                      },child: const Text('CANCEL'),),
+                      TextButton(onPressed: (){
+                        if(titleController.text.isNotEmpty && subTitleController.text.isNotEmpty){
+                          NoteModel noteModel=NoteModel(
+                              title: titleController.text,
+                              subtitle:subTitleController.text,
+                              color:"Colors.blue");
+                          context.read<NoteBloc>().add(UpdateNoteEvent(noteId:widget.noteModel!.id!, noteModel: noteModel));
+                          ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                  backgroundColor: Colors.green,
+                                  content: Text('Success'))
+                          );
+                          Navigator.pop(context);
+                          Navigator.pop(context);
+                        }
+                        else{
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                backgroundColor: Colors.red,
+                                content: Text('Error')),
+                          );
+                          Navigator.pop(context);
+                        }
+                        Navigator.pop(context);
+                      },child: const Text('OK'),),
+                    ],
+                    // backgroundColor: AppColors.white,
+                  );
+                });
+              },
+                style: IconButton.styleFrom(
+                    backgroundColor: AppColors.white.withOpacity(0.4),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8)
+                    )
+                ),
+                icon:const Icon(Icons.save),color: AppColors.white,)
+            ],),
             TextField(
               controller: titleController,
               maxLines: null,

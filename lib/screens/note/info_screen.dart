@@ -16,26 +16,44 @@ class _InfoScreenState extends State<InfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black,
-      appBar: AppBar(
-        backgroundColor: AppColors.black,
-        title: Text('Info',style: AppTextStyle.interMedium.copyWith(
-          color: AppColors.white,fontSize: 34
-        ),),
-        actions: [
-          IconButton(
-              onPressed: (){
-                Navigator.push(context,MaterialPageRoute(builder:(context){
-                  return UpdateNotesScreen(noteModel: widget.noteModel,);
-                }));
-              },
-              icon:const Icon(Icons.edit))
-        ],
-      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 35,vertical: 20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const SizedBox(height:50,),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              IconButton(
+                  onPressed: (){
+                    Navigator.pop(context);
+                  },
+                  style: IconButton.styleFrom(
+                    backgroundColor: AppColors.white.withOpacity(0.4),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    )
+                  ),
+                  icon:const Icon(Icons.arrow_back_ios_new,color: AppColors.white,)),
+              Text('Info',style: AppTextStyle.interMedium.copyWith(
+                  color: AppColors.white,fontSize: 34
+              ),),
+              IconButton(
+                  onPressed: (){
+                    Navigator.push(context,MaterialPageRoute(builder:(context){
+                      return UpdateNotesScreen(noteModel: widget.noteModel,);
+                    }));
+                  },
+                  style: IconButton.styleFrom(
+                      backgroundColor: AppColors.white.withOpacity(0.4),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                      )
+                  ),
+                  icon:const Icon(Icons.edit,color: AppColors.white,))
+            ],),
+          const SizedBox(height:50,),
           Text(widget.noteModel!.title,style: AppTextStyle.interBold.copyWith(
             color: AppColors.white,fontSize: 40
           ),),

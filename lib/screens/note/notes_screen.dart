@@ -11,7 +11,6 @@ import 'package:homework12/utils/images/app_images.dart';
 import 'package:homework12/utils/styles/app_text_style.dart';
 import '../../blocs/note/note_bloc.dart';
 import '../../blocs/note/note_state.dart';
-import '../../data/global/global_list.dart';
 
 
 
@@ -27,28 +26,36 @@ class _NotesScreenState extends State<NotesScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.black.withOpacity(0.1),
-      appBar: AppBar(
-        backgroundColor: AppColors.black.withOpacity(0.1),
-        elevation: 0,
-        title: Text('Notes',style: AppTextStyle.interBold.copyWith(
-          color: AppColors.white,fontSize:40
-        ),),
-        actions: [
-          IconButton(
-              style: IconButton.styleFrom(
-                backgroundColor:Colors.white.withOpacity(0.4)
-              ),
-              onPressed: (){},
-              icon:const Icon(Icons.search,color: AppColors.white,)),
-          IconButton(
-              style: IconButton.styleFrom(
-                  backgroundColor:Colors.white.withOpacity(0.4)
-              ),
-              onPressed: (){},
-              icon:const Icon(Icons.info,color: AppColors.white,)),
-        ],
-      ),
       body: Column(children: [
+        const SizedBox(height: 60,),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal:24),
+          child: Row(children: [
+            Text('Notes',style: AppTextStyle.interBold.copyWith(
+                color: AppColors.white,fontSize:40
+            ),),
+            const Spacer(),
+            IconButton(
+                style: IconButton.styleFrom(
+                    backgroundColor:Colors.white.withOpacity(0.4),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  )
+                ),
+                onPressed: (){},
+                icon:const Icon(Icons.search,color: AppColors.white,)),
+            const SizedBox(width:8,),
+            IconButton(
+                style: IconButton.styleFrom(
+                    backgroundColor:Colors.white.withOpacity(0.4),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(8),
+                    )
+                ),
+                onPressed: (){},
+                icon:const Icon(Icons.info,color: AppColors.white,)),
+          ],),
+        ),
         BlocBuilder<NoteBloc, NoteState>(
           builder: (context, state) {
             if (state is CurrencyLoadingState) {
@@ -67,9 +74,9 @@ class _NotesScreenState extends State<NotesScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height:100,),
+                    const SizedBox(height:100,),
                   Image.asset(AppImages.img),
-                  SizedBox(height:10,),
+                  const SizedBox(height:10,),
                   Text("Create your first note !",style: AppTextStyle.interRegular.copyWith(
                     color: Colors.white,fontSize:24
                   ),)
@@ -94,7 +101,9 @@ class _NotesScreenState extends State<NotesScreen> {
                         trailing: IconButton(onPressed: (){
                           showDialog(context: context, builder:(context){
                             return AlertDialog(
-                              content: const Text("Do you want to delete"),
+                              content:Text("Do you want to delete",style: AppTextStyle.interMedium.copyWith(
+                                color: AppColors.black,fontSize: 20
+                              ),),
                               actions: [
                                 TextButton(onPressed: (){
                                   Navigator.pop(context);
@@ -107,7 +116,7 @@ class _NotesScreenState extends State<NotesScreen> {
                             );
                           });
                         },icon: const Icon(Icons.delete,color: Colors.white,),),
-                        // tileColor:noteModel.color.value.toString().toColor(),
+                        tileColor:Colors.red,
                         title: Text(
                             noteModel.title,style: AppTextStyle.interMedium.copyWith(
                           color: AppColors.white,fontSize:24
