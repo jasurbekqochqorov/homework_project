@@ -82,7 +82,6 @@ class _NotesScreenState extends State<NotesScreen> {
                   ),)
                 ],),);
               }
-
               return Expanded(
                 child: ListView(
                   padding: const EdgeInsets.symmetric(horizontal:24,vertical:8),
@@ -116,7 +115,7 @@ class _NotesScreenState extends State<NotesScreen> {
                             );
                           });
                         },icon: const Icon(Icons.delete,color: Colors.white,),),
-                        tileColor:Colors.red,
+                        tileColor:noteModel.color.toColor(),
                         title: Text(
                             noteModel.title,style: AppTextStyle.interMedium.copyWith(
                           color: AppColors.white,fontSize:24

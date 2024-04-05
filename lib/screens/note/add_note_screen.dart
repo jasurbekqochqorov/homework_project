@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -8,6 +10,7 @@ import 'package:homework12/utils/styles/app_text_style.dart';
 
 import '../../blocs/note/note_bloc.dart';
 import '../../blocs/note/note_event.dart';
+import '../../data/global/global_list.dart';
 
 class AddNotesScreen extends StatefulWidget {
   const AddNotesScreen({super.key});
@@ -58,7 +61,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                           NoteModel noteModel=NoteModel(
                               title: titleController.text,
                               subtitle:subTitleController.text,
-                              color:"Colors.red");
+                              color:list[Random().nextInt(list.length-1)]);
                           context.read<NoteBloc>().add(SaveNoteEvent(noteModel:noteModel));
                           ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

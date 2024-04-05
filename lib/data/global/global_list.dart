@@ -1,14 +1,15 @@
 
 import 'package:flutter/material.dart';
 
-List<Color> list=[
-  Colors.green,
-  Colors.grey,
-  Colors.amberAccent,
-  Colors.cyan,
-  Colors.deepOrangeAccent,
-  Colors.deepPurpleAccent,
-  Colors.greenAccent,
-  Colors.teal,
-  Colors.brown
+List<String> list=[
+  'FFCC80',
+  'CCFF80',
+'80FFFF',
+  '80FFD9',
+  '809CFF',
+  'FF80EB',
+  'FC80FF',
+  '80FFA3',
+  '80D1FF',
+  'FFCC80'
 ];
