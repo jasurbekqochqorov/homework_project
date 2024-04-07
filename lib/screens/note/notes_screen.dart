@@ -2,15 +2,15 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:homework12/blocs/note/note_event.dart';
+import 'package:homework12/blocs/note/card_event.dart';
 import 'package:homework12/data/models/note_model.dart';
 import 'package:homework12/screens/note/add_note_screen.dart';
 import 'package:homework12/screens/note/info_screen.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
 import 'package:homework12/utils/images/app_images.dart';
 import 'package:homework12/utils/styles/app_text_style.dart';
-import '../../blocs/note/note_bloc.dart';
-import '../../blocs/note/note_state.dart';
+import '../../blocs/note/card_bloc.dart';
+import '../../blocs/note/card_state.dart';
 
 
 

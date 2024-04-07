@@ -11,8 +11,8 @@ class CurrencyLoadingState extends NoteState {}
 class CurrencyEmptyState extends NoteState {}
 
 class CurrencySuccessState extends NoteState {
-  CurrencySuccessState({required this.notes});
-  final List<NoteModel> notes;
+  CurrencySuccessState({required this.cards});
+  final List<CardModels> cards;
 }
 
 class CurrencyErrorState extends NoteState {

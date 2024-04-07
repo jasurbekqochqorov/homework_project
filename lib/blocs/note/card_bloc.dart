@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homework12/data/local/local_database.dart';
 import 'package:homework12/data/models/note_model.dart';
-import 'note_event.dart';
-import 'note_state.dart';
+import 'card_event.dart';
+import 'card_state.dart';
 
-class NoteBloc extends Bloc<NoteEvent,NoteState> {
-  NoteBloc():super(CurrencyInitialState()){
+class CardBloc extends Bloc<NoteEvent,NoteState> {
+  CardBloc():super(CurrencyInitialState()){
   on<SaveNoteEvent>(_saveNote);
   on<GetNotesEvent>(_getNotes);
   on<DeleteNoteEvent>(_deleteNotes);

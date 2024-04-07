@@ -9,8 +9,8 @@ import 'package:homework12/screens/note/notes_screen.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
 import 'package:homework12/utils/styles/app_text_style.dart';
 
-import '../../blocs/note/note_bloc.dart';
-import '../../blocs/note/note_event.dart';
+import '../../blocs/note/card_bloc.dart';
+import '../../blocs/note/card_event.dart';
 import '../../data/global/global_list.dart';
 
 class UpdateNotesScreen extends StatefulWidget {
