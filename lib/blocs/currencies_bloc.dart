@@ -10,7 +10,7 @@ class CurrenciesBloc extends Bloc<CurrenciesEvent, CurrenciesState> {
       : super(CurrenciesInitialState()) {
     on<GetCurrenciesEvent>((event, emit) async {
       emit(CurrenciesLoadingState());
-      List<CurrencyModel> list = await currenciesRepo.getCurrencies();
+      List<ProductModel> list = await currenciesRepo.getCurrencies();
       if (list.isEmpty) {
         emit(CurrenciesErrorState("Something went wrong"));
       } else {
@@ -20,6 +20,24 @@ class CurrenciesBloc extends Bloc<CurrenciesEvent, CurrenciesState> {
           ),
         );
       }
+    });
+    on<DeleteCurrenciesEvent>((event,emit)async{
+     await currenciesRepo.deleteCurrencies(event.id);
+     emit(CurrenciesLoadingState());
+     emit(CurrenciesSuccessState(currencies: await currenciesRepo.getCurrencies()));
+      });
+
+    on<AddCurrenciesEvent>((event,emit)async{
+      emit(CurrenciesLoadingState());
+      await currenciesRepo.addCurrencies(event.productModel);
+
+      emit(CurrenciesSuccessState(currencies: await currenciesRepo.getCurrencies()));
+    });
+
+    on<UpdateCurrenciesEvent>((event,emit)async{
+      await currenciesRepo.updateCurrencies(event.productModel);
+      emit(CurrenciesLoadingState());
+      emit(CurrenciesSuccessState(currencies: await currenciesRepo.getCurrencies()));
     });
   }
 

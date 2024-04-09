@@ -4,7 +4,7 @@ import '../data/models/currency_model.dart';
 abstract class CurrenciesState {}
 
 class CurrenciesSuccessState extends CurrenciesState {
-  final List<CurrencyModel> currencies;
+  final List<ProductModel> currencies;
 
   CurrenciesSuccessState({required this.currencies});
 }

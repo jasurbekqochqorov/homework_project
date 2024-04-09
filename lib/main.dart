@@ -26,7 +26,7 @@ class App extends StatelessWidget {
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider(
-            create: (_) => CurrenciesRepo(apiProvider: apiProvider)),
+            create: (_) => CurrenciesRepo()),
       ],
       child: MultiBlocProvider(
         providers: [
