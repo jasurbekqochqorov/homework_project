@@ -13,7 +13,7 @@ class CountriesBloc extends Bloc<CountriesEvent, CountriesState> {
     on<FetchCountries>((FetchCountries event, emit) async {
       emit(CountriesLoading());
       NetworkResponse networkResponse;
-      if (event.qit.isEmpty) {
+      if (event.qit=='All') {
         networkResponse = await apiClient.getCountries();
       } else {
         networkResponse = await apiClient.getCountriesByContinents(event.qit);

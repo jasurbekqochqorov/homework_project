@@ -2,18 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
+import 'package:homework12/utils/styles/app_text_style.dart';
 
 import 'blocs/countries_bloc.dart';
 
 class CountriesScreen extends StatelessWidget {
-  const CountriesScreen({super.key});
-
+  const CountriesScreen({super.key, required this.continent});
+  final String continent;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
-        title: const Text("EUROPE COUNTRIES"),
+        title:Text(continent,style:AppTextStyle.interMedium.copyWith(
+          color: AppColors.black,fontSize:24
+        ),),
+        centerTitle: true,
       ),
       body: BlocBuilder<CountriesBloc, CountriesState>(
         builder: (context, state) {
@@ -50,8 +54,15 @@ class CountriesScreen extends StatelessWidget {
                       state.countries.length,
                       (index) => ListTile(
                         title: Text(state.countries[index].name),
-                        trailing: Text(state.countries[index].emoji),
-                        // subtitle: Text(state.countries[index].continentName),
+                        titleTextStyle: AppTextStyle.interMedium.copyWith(
+                          color: AppColors.black,fontSize:20
+                        ),
+                        trailing: Text(state.countries[index].emoji,style: AppTextStyle.interMedium.copyWith(
+                          fontSize: 24
+                        ),),
+                        subtitle: Text(state.countries[index].continentName,style: AppTextStyle.interRegular.copyWith(
+                          color: AppColors.black,fontSize: 16
+                        ),),
                       ),
                     ),
                   ),
