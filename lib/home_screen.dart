@@ -117,7 +117,7 @@ class _HomeScreenState extends State<HomeScreen> {
               SizedBox(
                 width: double.infinity,
                 child: TextButton(onPressed: (){
-                  context.read<CountriesBloc>().add(FetchCountries(qit: 'All'));
+                  context.read<CountriesBloc>().add(FetchCountries(qit: ''));
                   Navigator.push(context,MaterialPageRoute(builder: (context){
                     return const CountriesScreen(continent: 'All',);
                   }));

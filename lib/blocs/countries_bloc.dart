@@ -13,7 +13,7 @@ class CountriesBloc extends Bloc<CountriesEvent, CountriesState> {
     on<FetchCountries>((FetchCountries event, emit) async {
       emit(CountriesLoading());
       NetworkResponse networkResponse;
-      if (event.qit=='All') {
+      if (event.qit=='') {
         networkResponse = await apiClient.getCountries();
       } else {
         networkResponse = await apiClient.getCountriesByContinents(event.qit);
@@ -24,7 +24,7 @@ class CountriesBloc extends Bloc<CountriesEvent, CountriesState> {
           emit(CountriesSuccess(networkResponse.data as List<CountryModel>));
         }
         else{
-          emit(CountriesSuccess((networkResponse.data as List<CountryModel>).where((element) => element.name.toLowerCase().contains(event.search.toLowerCase())).toList()));
+          emit(CountriesSuccess((networkResponse.data as List<CountryModel>).where((element) => element.name.toLowerCase()[0]==event.search.toLowerCase()[0]).toList()));
         }
       } else {
         emit(CountriesError(networkResponse.errorText));

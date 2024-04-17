@@ -27,7 +27,6 @@ class CountriesScreen extends StatelessWidget {
           if (state is CountriesError) {
             return Center(child: Text(state.errorMessage));
           }
-
           if (state is CountriesSuccess) {
             return Column(
               children: [
@@ -35,7 +34,14 @@ class CountriesScreen extends StatelessWidget {
                   padding: const EdgeInsets.all(24),
                   child: TextField(
                     onChanged: (v){
-                      context.read<CountriesBloc>().add(FetchCountries(search: v));
+                      String qit='';
+                        if(continent=='Australia'){
+                          qit='OC';
+                        }
+                      else if(continent!='All'){
+                        qit=continent.toUpperCase().substring(0,2);
+                      }
+                      context.read<CountriesBloc>().add(FetchCountries(search: v,qit:qit));
                     },
                     decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.search),
@@ -70,7 +76,6 @@ class CountriesScreen extends StatelessWidget {
               ],
             );
           }
-
           return const SizedBox();
         },
       ),

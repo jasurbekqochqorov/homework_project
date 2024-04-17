@@ -1,7 +1,5 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:graphql/client.dart';
-
 import '../models/country_model.dart';
 import '../models/network_response.dart';
 import '../queries/country.dart';
