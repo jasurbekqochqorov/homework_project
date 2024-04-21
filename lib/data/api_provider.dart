@@ -1,20 +1,20 @@
+import 'dart:convert';
 import 'dart:io';
-import 'package:get/get_connect/connect.dart';
+import 'package:http/http.dart' as http;
 import 'models/currency_model.dart';
 import 'models/network_response.dart';
 
-
-class ApiProvider extends GetConnect {
-
+class ApiProvider {
    Future<NetworkResponse> getCurrencies() async {
     try {
-     Response response = await get("https://cbu.uz/uz/arkhiv-kursov-valyut/json/");
+      http.Response response = await http
+          .get(Uri.parse("https://cbu.uz/uz/arkhiv-kursov-valyut/json/"));
 
       if (response.statusCode == HttpStatus.ok) {
         return NetworkResponse(
-          data: (response.body as List?)
-                  ?.map((e) => CurrencyModel.fromJson(e))
-                  .toList() ??
+          data: (jsonDecode(response.body) as List?)
+              ?.map((e) => CurrencyModel.fromJson(e))
+              .toList() ??
               [],
         );
       }
