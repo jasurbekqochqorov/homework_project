@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 
-class AllIcon{
+class AppImages{
 
   static String motors='assets/images/img.png';
+  static String fon='assets/images/img_1.png';
 
 
 
@@ -11,4 +12,5 @@ class AllIcon{
 
 
   static String arrow='assets/icons/arrow.svg';
+  static String plus='assets/icons/plus.svg';
 }
