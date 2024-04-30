@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:homework12/Screen/main_screen.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-void main(){
-  runApp(const MyApp());
+import 'app/app.dart';
+import 'blocs/my_bloc_observer.dart';
 
-}
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
+  // Bloc.observer = MyBlocObserver();
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MainScreen(),
-      debugShowCheckedModeBanner: false,
-    );
-  }
+  runApp(const App());
 }
