@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "69010029050",
+    "project_id": "exam-6d6a3",
+    "storage_bucket": "exam-6d6a3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69010029050:android:1404c17ff1c4d164a54c43",
+        "android_client_info": {
+          "package_name": "com.example.homework_project"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMru39nTRo7X71BKydAxTyYFIjXiGD3xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:69010029050:android:b254e48ec17ea7f4a54c43",
+        "android_client_info": {
+          "package_name": "com.example.nt_exam_4"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMru39nTRo7X71BKydAxTyYFIjXiGD3xM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
