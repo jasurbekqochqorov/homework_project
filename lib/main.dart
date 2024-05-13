@@ -11,10 +11,10 @@ void main() {
     MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) =>
-        GameBloc(),
+        GameBloc()..add(GetAllNumber()),
         ),
       ],
-      child: MyApp(),
+      child: const MyApp(),
     ),
   );
 }
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       // theme: ThemeData(useMaterial3: false),
-      home: const GameScreen(),
+      home: GameScreen(),
     );
   }
 }

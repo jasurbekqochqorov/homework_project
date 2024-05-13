@@ -16,6 +16,5 @@ List<NumberSquareModel> questions = [
     NumberSquareModel(index: 12, number: '12', isFilled:false),
     NumberSquareModel(index: 13, number: '13', isFilled:false),
     NumberSquareModel(index: 14, number: '14', isFilled:false),
-    NumberSquareModel(index: 15, number: '', isFilled:true),
-    NumberSquareModel(index: 16, number: '15', isFilled:false),];
-
+    NumberSquareModel(index: 15, number: '15', isFilled:false),
+    NumberSquareModel(index: 16, number: '', isFilled:true),];

@@ -1,8 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:homework12/data/models/number_square_model.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
+import 'package:homework12/utils/size/size_utils.dart';
 import 'package:homework12/utils/styles/app_text_style.dart';
 import 'blocs/game/game_bloc.dart';
 
@@ -21,10 +23,10 @@ class _GameScreenState extends State<GameScreen> {
     super.initState();
   }
 
-  int k = 0;
-
   @override
   Widget build(BuildContext context) {
+    width=MediaQuery.of(context).size.width;
+    height=MediaQuery.of(context).size.height;
     return Scaffold(
       appBar: AppBar(
         title: const Text('Game'),
@@ -37,7 +39,6 @@ class _GameScreenState extends State<GameScreen> {
                 children: [
                   TextButton(
                       onPressed: () {
-
                       },
                       child: Text(
                         'Do you want play again',
@@ -49,18 +50,23 @@ class _GameScreenState extends State<GameScreen> {
             );
           }
           if (state is CheckState) {
-            debugPrint('Qaytdan chizildi:');
+            debugPrint('Qaytdan chizildi:${state.k}');
             return Column(
               children: [
                 Text(
-                  "${k}",
+                  "${state.k} A",
                   style: AppTextStyle.interMedium
                       .copyWith(color: AppColors.black, fontSize: 44),
                 ),
                 const SizedBox(
                   height: 100,
                 ),
-                Expanded(
+                TextButton(onPressed:(){
+                  context.read<GameBloc>().add(GetAllNumber());
+                }, child:const Text("Again")),
+                Container(
+                  height:height*0.47,
+                  color: AppColors.black,
                   child: GridView.count(
                     crossAxisCount: 4,
                     children: List.generate(state.allNumbers.length, (index) {
@@ -71,19 +77,14 @@ class _GameScreenState extends State<GameScreen> {
                         child: TextButton(
                           style: TextButton.styleFrom(
                               backgroundColor: (questions.isFilled)
-                                  ? Colors.white
+                                  ?null
                                   : Colors.brown,
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(2))),
                           onPressed: () {
                             setState(() {
-                              k++;
-                              context.read<GameBloc>().add(CheckBox(
-                                    k: state.k,
-                                    index: index,
-                                  ));
-                              context.read<GameBloc>().add(const Check());
                             });
+                              context.read<GameBloc>().add(CheckWins(questions:state.allNumbers, k:state.k+1,index:index));
                           },
                           child: Text(
                             questions.number,
