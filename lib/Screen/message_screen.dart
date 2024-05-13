@@ -58,7 +58,7 @@ class _MessageScreenState extends State<MessageScreen> {
                   child: ListView(
                     padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 24),
                     children: List.generate(list.length, (index) {
-                      MessageModel messageModel=list[list.length-1-index];
+                      MessageModel messageModel=list[index];
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Row(

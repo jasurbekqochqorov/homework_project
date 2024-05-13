@@ -75,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     StorageRepository.setString(key: 'lastName', value:lastNameController.text);
                     context.read<ChatBloc>().add(AddContact(contactModel:ContactModel(
                       userId: '',
-                      contactId:2,
+                      contactId:DateTime.now().microsecond,
                       contactLasName:lastNameController.text,
                       contactName:nameController.text,)));
                   Navigator.pushReplacement(context,MaterialPageRoute(builder: (context){
