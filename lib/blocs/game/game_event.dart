@@ -10,14 +10,14 @@ class GetAllNumber extends GameEvent{
   List<Object?> get props =>[];
 }
 class CheckWins extends GameEvent {
-  final int k;
   final int index;
   final List<NumberSquareModel> questions;
-  const CheckWins({required this.questions,required this.k,required this.index});
+  const CheckWins({required this.questions,required this.index});
 
   @override
   List<Object?> get props => [
-    questions
+    questions,
+    index
   ];
 }
 

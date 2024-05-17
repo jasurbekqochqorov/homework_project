@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:homework12/blocs/cubit/counter_cubit.dart';
 import 'package:homework12/data/models/number_square_model.dart';
 import 'package:homework12/utils/colors/app_colors.dart';
 import 'package:homework12/utils/size/size_utils.dart';
@@ -10,19 +11,11 @@ import 'blocs/game/game_bloc.dart';
 
 class GameScreen extends StatefulWidget {
   const GameScreen({super.key});
-
   @override
   State<GameScreen> createState() => _GameScreenState();
 }
 
 class _GameScreenState extends State<GameScreen> {
-  @override
-  void initState() {
-    // context.read<GameBloc>();
-    // context.read<GameRepository>();
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     width=MediaQuery.of(context).size.width;
@@ -32,13 +25,15 @@ class _GameScreenState extends State<GameScreen> {
         title: const Text('Game'),
       ),
       body: BlocBuilder<GameBloc, GameState>(
-        builder: (context, state) {
-          if (state is CheckWin) {
+        builder: (context, state){
+
+          if (state.isWin) {
             return Center(
               child: Column(
                 children: [
                   TextButton(
                       onPressed: () {
+
                       },
                       child: Text(
                         'Do you want play again',
@@ -49,21 +44,29 @@ class _GameScreenState extends State<GameScreen> {
               ),
             );
           }
-          if (state is CheckState) {
-            debugPrint('Qaytdan chizildi:${state.k}');
+          else {
             return Column(
               children: [
-                Text(
-                  "${state.k} A",
-                  style: AppTextStyle.interMedium
-                      .copyWith(color: AppColors.black, fontSize: 44),
+                BlocBuilder<CounterCubit,int>(
+                  builder: (context1,state){
+                    return Column(
+                      children: [
+                        Text(
+                          "$state",
+                          style: AppTextStyle.interMedium
+                              .copyWith(color: AppColors.black, fontSize: 44),
+                        ),
+                        const SizedBox(
+                          height: 100,
+                        ),
+                        TextButton(onPressed:(){
+                          context1.read<CounterCubit>().empty();
+                          context.read<GameBloc>().add(GetAllNumber());
+                        }, child:Text("${state}Again")),
+                      ],
+                    );
+                  },
                 ),
-                const SizedBox(
-                  height: 100,
-                ),
-                TextButton(onPressed:(){
-                  context.read<GameBloc>().add(GetAllNumber());
-                }, child:const Text("Again")),
                 Container(
                   height:height*0.47,
                   color: AppColors.black,
@@ -80,11 +83,11 @@ class _GameScreenState extends State<GameScreen> {
                                   ?null
                                   : Colors.brown,
                               shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(2))),
+                                  borderRadius: BorderRadius.circular(8))),
                           onPressed: () {
-                            setState(() {
-                            });
-                              context.read<GameBloc>().add(CheckWins(questions:state.allNumbers, k:state.k+1,index:index));
+                            setState(() {});
+                            context.read<CounterCubit>().increment();
+                              context.read<GameBloc>().add(CheckWins(questions:state.allNumbers,index:index));
                           },
                           child: Text(
                             questions.number,

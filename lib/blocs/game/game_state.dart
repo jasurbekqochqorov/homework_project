@@ -1,18 +1,22 @@
 part of 'game_bloc.dart';
 
 class GameState extends Equatable {
-  const GameState();
+  final List<NumberSquareModel> allNumbers;
+  final bool isWin;
+
+  const GameState({required this.isWin, required this.allNumbers,});
+
+  GameState copyWith({
+    List<NumberSquareModel>? allNumbers,
+    bool? isWin,
+  }) {
+    return GameState(
+      allNumbers: allNumbers ?? this.allNumbers,
+      isWin: isWin ?? this.isWin,
+    );
+  }
 
   @override
   // TODO: implement props
-  List<NumberSquareModel> get props =>[];
-}
-
-class CheckState extends GameState{
-  final List<NumberSquareModel> allNumbers;
-  final int k;
-  const CheckState({required this.allNumbers,required this.k});
-}
-class CheckWin extends GameState{
-  const CheckWin();
+  List get props => [allNumbers, isWin];
 }
