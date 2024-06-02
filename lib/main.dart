@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:homework12/Screen/main_screen.dart';
+import 'package:homework12/utils/permission_utils/app_permissions.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 void main(){
+  WidgetsFlutterBinding.ensureInitialized();
+  // AppPermissions.getSomePermissions();
   runApp(const MyApp());
 
 }
@@ -12,9 +16,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MainScreen(),
       debugShowCheckedModeBanner: false,
     );
   }
 }
+

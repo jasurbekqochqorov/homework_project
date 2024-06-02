@@ -37,6 +37,12 @@ dependencies:
   cupertino_icons: ^1.0.2
   flutter_svg: ^2.0.9
   zoom_tap_animation: ^1.1.0
+  just_audio: ^0.9.38
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.5
+  bloc_concurrency: ^0.2.5
+  file_picker: ^4.1.6
+  permission_handler: ^10.2.0
 
 dev_dependencies:
   flutter_test:
@@ -65,7 +71,6 @@ flutter:
   assets:
     - assets/images/
     - assets/icons/
-    -
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 
