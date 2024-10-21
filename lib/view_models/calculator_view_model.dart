@@ -45,9 +45,9 @@ class CalculatorViewModel extends ChangeNotifier{
       if(result.isNotEmpty){
         k=result;
       }
-      else{
-        k=m;
-      }
+      // else{
+      //   k=m;
+      // }
       k=k+operation;
       op=operation;
       notifyListeners();
